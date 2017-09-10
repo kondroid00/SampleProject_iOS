@@ -31,5 +31,12 @@ class BaseViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func showErrorAlert(message: String = "通信に失敗しました。", title: String = "Error") {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let acceptButton = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+        alert.addAction(acceptButton)
+        present(alert, animated: true)
+    }
 
 }

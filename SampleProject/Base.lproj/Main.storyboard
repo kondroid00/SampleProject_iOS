@@ -162,6 +162,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="新規登録" id="Be3-h5-iLL"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="4Yb-LT-Kt5" id="ZSU-5q-hiL"/>
+                        <outlet property="signUpButton" destination="fvn-Zb-tIi" id="t8m-F0-x3u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8H-fl-OoK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

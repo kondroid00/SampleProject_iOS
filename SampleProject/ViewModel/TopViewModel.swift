@@ -12,7 +12,6 @@ import RxSwift
 class TopViewModel: BaseViewModel {
     
     let authModel = AuthModel()
-    let userModel = UsersModel()
     
     func login() {
         let params = LoginRequest.Params()
@@ -32,24 +31,4 @@ class TopViewModel: BaseViewModel {
                 }
         )
     }
-    
-    func signUp() {
-        let params = UserCreateRequest.Params()
-        params.name = "test"
-        userModel.createUser().subscribeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: { data in
-                    
-                },
-                onError: {error in
-                    
-                },
-                onCompleted: {
-            
-                },
-                onDisposed: {
-                }
-            )
-    }
-    
 }
