@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		63FE13CD9339C4E2A683755E /* Pods_SampleProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031562D9447C3BF473D4CC5B /* Pods_SampleProject.framework */; };
 		9E0498241F5C3BBD00CE7282 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0498231F5C3BBD00CE7282 /* UIViewExtension.swift */; };
+		9E0498261F5C4DA800CE7282 /* TopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0498251F5C4DA800CE7282 /* TopViewModel.swift */; };
+		9E0498281F5C4E7400CE7282 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0498271F5C4E7400CE7282 /* BaseViewModel.swift */; };
+		9E04982A1F5C4F3D00CE7282 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0498291F5C4F3D00CE7282 /* AuthModel.swift */; };
+		9E04982C1F5C4F5900CE7282 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E04982B1F5C4F5900CE7282 /* BaseModel.swift */; };
+		9E04982F1F5C4FCD00CE7282 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E04982E1F5C4FCD00CE7282 /* BaseRequest.swift */; };
+		9E0498331F5C6F6C00CE7282 /* CreateUserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0498321F5C6F6C00CE7282 /* CreateUserResult.swift */; };
+		9E0498351F5C720C00CE7282 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0498341F5C720C00CE7282 /* NetworkConstants.swift */; };
+		9E5CCA0B1F5F9443002C1774 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CCA0A1F5F9443002C1774 /* AccountManager.swift */; };
 		9E76FDD71F5C119C0006FEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E76FDD61F5C119C0006FEA4 /* BaseViewController.swift */; };
 		9E76FDD91F5C12680006FEA4 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E76FDD81F5C12680006FEA4 /* TopViewController.swift */; };
 		9E9920581F5BFE820025DEBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9920571F5BFE820025DEBB /* AppDelegate.swift */; };
@@ -18,6 +26,13 @@
 		9E9920621F5BFE820025DEBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9920601F5BFE820025DEBB /* LaunchScreen.storyboard */; };
 		9E99206D1F5BFE830025DEBB /* SampleProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E99206C1F5BFE830025DEBB /* SampleProjectTests.swift */; };
 		9E9920781F5BFE830025DEBB /* SampleProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9920771F5BFE830025DEBB /* SampleProjectUITests.swift */; };
+		9EC307E61F6443F500E3E810 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307E51F6443F500E3E810 /* LoginResult.swift */; };
+		9EC307ED1F644AB600E3E810 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307EC1F644AB600E3E810 /* LoginRequest.swift */; };
+		9EC307F01F644AFA00E3E810 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307EF1F644AFA00E3E810 /* UserCreateRequest.swift */; };
+		9EC307F21F644B8600E3E810 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F11F644B8600E3E810 /* UsersModel.swift */; };
+		9EC307F41F65242B00E3E810 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F31F65242B00E3E810 /* User.swift */; };
+		9EC307F61F6524BA00E3E810 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F51F6524BA00E3E810 /* Token.swift */; };
+		9EC307F81F652D0F00E3E810 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F71F652D0F00E3E810 /* SignUpViewController.swift */; };
 		B266225EA121EF438256177A /* Pods_SampleProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB60136D667641EBA20678A /* Pods_SampleProjectUITests.framework */; };
 		E606D8BC441941E770E8E81B /* Pods_SampleProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6305A2F317C533E1C957E053 /* Pods_SampleProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +63,14 @@
 		8178505D48383036B3B9A94A /* Pods-SampleProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProjectTests/Pods-SampleProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		82789BDF833943618B5FCE17 /* Pods-SampleProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProjectUITests/Pods-SampleProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9E0498231F5C3BBD00CE7282 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		9E0498251F5C4DA800CE7282 /* TopViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewModel.swift; sourceTree = "<group>"; };
+		9E0498271F5C4E7400CE7282 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		9E0498291F5C4F3D00CE7282 /* AuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		9E04982B1F5C4F5900CE7282 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		9E04982E1F5C4FCD00CE7282 /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		9E0498321F5C6F6C00CE7282 /* CreateUserResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserResult.swift; sourceTree = "<group>"; };
+		9E0498341F5C720C00CE7282 /* NetworkConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		9E5CCA0A1F5F9443002C1774 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		9E76FDD61F5C119C0006FEA4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9E76FDD81F5C12680006FEA4 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		9E9920541F5BFE820025DEBB /* SampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +86,13 @@
 		9E9920731F5BFE830025DEBB /* SampleProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9920771F5BFE830025DEBB /* SampleProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProjectUITests.swift; sourceTree = "<group>"; };
 		9E9920791F5BFE830025DEBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EC307E51F6443F500E3E810 /* LoginResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
+		9EC307EC1F644AB600E3E810 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		9EC307EF1F644AFA00E3E810 /* UserCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
+		9EC307F11F644B8600E3E810 /* UsersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		9EC307F31F65242B00E3E810 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9EC307F51F6524BA00E3E810 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		9EC307F71F652D0F00E3E810 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D12217CED975B8AE1FC354C9 /* Pods-SampleProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProject/Pods-SampleProject.debug.xcconfig"; sourceTree = "<group>"; };
 		FF21FC2AEE6AF97351EC3569 /* Pods-SampleProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProjectTests/Pods-SampleProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,16 +156,47 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		9E76FDCE1F5C112C0006FEA4 /* Api */ = {
+		9E04982D1F5C4FC100CE7282 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				9E04982E1F5C4FCD00CE7282 /* BaseRequest.swift */,
+				9EC307EE1F644AD200E3E810 /* User */,
+				9EC307EB1F644AB600E3E810 /* Auth */,
 			);
-			path = Api;
+			path = Request;
+			sourceTree = "<group>";
+		};
+		9E0498301F5C542900CE7282 /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				9E0498311F5C6F2D00CE7282 /* Result */,
+				9EC307F31F65242B00E3E810 /* User.swift */,
+				9EC307F51F6524BA00E3E810 /* Token.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
+		9E0498311F5C6F2D00CE7282 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				9E0498321F5C6F6C00CE7282 /* CreateUserResult.swift */,
+				9EC307E51F6443F500E3E810 /* LoginResult.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		9E5CCA091F5F9443002C1774 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				9E5CCA0A1F5F9443002C1774 /* AccountManager.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		9E76FDCF1F5C112C0006FEA4 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				9E0498341F5C720C00CE7282 /* NetworkConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -145,6 +206,7 @@
 			children = (
 				9E76FDD61F5C119C0006FEA4 /* BaseViewController.swift */,
 				9E76FDD81F5C12680006FEA4 /* TopViewController.swift */,
+				9EC307F71F652D0F00E3E810 /* SignUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +228,9 @@
 		9E76FDD31F5C112C0006FEA4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9E0498291F5C4F3D00CE7282 /* AuthModel.swift */,
+				9E04982B1F5C4F5900CE7282 /* BaseModel.swift */,
+				9EC307F11F644B8600E3E810 /* UsersModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +245,8 @@
 		9E76FDD51F5C112C0006FEA4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9E0498251F5C4DA800CE7282 /* TopViewModel.swift */,
+				9E0498271F5C4E7400CE7282 /* BaseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -209,7 +276,9 @@
 		9E9920561F5BFE820025DEBB /* SampleProject */ = {
 			isa = PBXGroup;
 			children = (
-				9E76FDCE1F5C112C0006FEA4 /* Api */,
+				9E5CCA091F5F9443002C1774 /* Auth */,
+				9E0498301F5C542900CE7282 /* Dto */,
+				9E04982D1F5C4FC100CE7282 /* Request */,
 				9E76FDCF1F5C112C0006FEA4 /* Constants */,
 				9E76FDD01F5C112C0006FEA4 /* Controller */,
 				9E0498221F5C3B8E00CE7282 /* Extensions */,
@@ -244,6 +313,22 @@
 				9E9920791F5BFE830025DEBB /* Info.plist */,
 			);
 			path = SampleProjectUITests;
+			sourceTree = "<group>";
+		};
+		9EC307EB1F644AB600E3E810 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				9EC307EC1F644AB600E3E810 /* LoginRequest.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		9EC307EE1F644AD200E3E810 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9EC307EF1F644AFA00E3E810 /* UserCreateRequest.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,10 +635,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E0498351F5C720C00CE7282 /* NetworkConstants.swift in Sources */,
+				9EC307ED1F644AB600E3E810 /* LoginRequest.swift in Sources */,
+				9E5CCA0B1F5F9443002C1774 /* AccountManager.swift in Sources */,
+				9E04982F1F5C4FCD00CE7282 /* BaseRequest.swift in Sources */,
+				9E04982C1F5C4F5900CE7282 /* BaseModel.swift in Sources */,
+				9E0498331F5C6F6C00CE7282 /* CreateUserResult.swift in Sources */,
 				9E0498241F5C3BBD00CE7282 /* UIViewExtension.swift in Sources */,
 				9E76FDD91F5C12680006FEA4 /* TopViewController.swift in Sources */,
+				9EC307F21F644B8600E3E810 /* UsersModel.swift in Sources */,
 				9E99205A1F5BFE820025DEBB /* ViewController.swift in Sources */,
+				9EC307F01F644AFA00E3E810 /* UserCreateRequest.swift in Sources */,
+				9E0498281F5C4E7400CE7282 /* BaseViewModel.swift in Sources */,
 				9E9920581F5BFE820025DEBB /* AppDelegate.swift in Sources */,
+				9E04982A1F5C4F3D00CE7282 /* AuthModel.swift in Sources */,
+				9EC307F81F652D0F00E3E810 /* SignUpViewController.swift in Sources */,
+				9EC307F41F65242B00E3E810 /* User.swift in Sources */,
+				9EC307F61F6524BA00E3E810 /* Token.swift in Sources */,
+				9EC307E61F6443F500E3E810 /* LoginResult.swift in Sources */,
+				9E0498261F5C4DA800CE7282 /* TopViewModel.swift in Sources */,
 				9E76FDD71F5C119C0006FEA4 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

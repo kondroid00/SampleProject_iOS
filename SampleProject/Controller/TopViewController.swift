@@ -7,13 +7,33 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class TopViewController: UIViewController {
-
+class TopViewController: BaseViewController {
+    
+    @IBOutlet weak var buttonStart: UIButton!
+    
+    
+    let vm = TopViewModel()
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if AccountManager.instance.hasUserId() {
+            login()
+        }
+        
+        buttonStart.rx.tap.subscribe(onNext: {[weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            weakSelf.signUp()
+            
+        }).addDisposableTo(disposeBag)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +41,17 @@ class TopViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func signUp() {
+        guard let nc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpNavigationController") as? UINavigationController else{
+            return
+        }
+        //_ = nc.pushViewController(vc, animated: false)
+        self.show(nc, sender: nil)
+    }
+    
+    private func login() {
+        vm.login()
+    }
 
     /*
     // MARK: - Navigation

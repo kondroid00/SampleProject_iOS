@@ -80,10 +80,114 @@
                             <constraint firstItem="gyL-9E-BnT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="120" id="paH-VP-naO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonStart" destination="Cd6-b2-hEG" id="HGL-Y6-iaq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
+        </scene>
+        <!--新規登録-->
+        <scene sceneID="fip-wj-t04">
+            <objects>
+                <viewController id="d63-Z0-ffq" customClass="SignUpViewController" customModule="SampleProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZIC-aY-rpt"/>
+                        <viewControllerLayoutGuide type="bottom" id="zyx-Cb-Mae"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rOW-Ig-IfP">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZS-YA-ngm">
+                                <rect key="frame" x="42.5" y="127" width="290" height="16"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="名前を入力してください（最大12文字）">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Yb-LT-Kt5">
+                                <rect key="frame" x="37.5" y="153" width="300" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Yb-LT-Kt5" secondAttribute="height" multiplier="6:1" id="dxI-DP-QS0"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvn-Zb-tIi">
+                                <rect key="frame" x="37" y="403" width="300" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fvn-Zb-tIi" secondAttribute="height" multiplier="6:1" id="4DF-nb-Smb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <state key="normal" title="登録">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Yb-LT-Kt5" firstAttribute="width" secondItem="rOW-Ig-IfP" secondAttribute="width" multiplier="0.8" id="4OH-UO-Rx6"/>
+                            <constraint firstItem="4Yb-LT-Kt5" firstAttribute="centerX" secondItem="rOW-Ig-IfP" secondAttribute="centerX" id="B1P-vJ-KmT"/>
+                            <constraint firstItem="zyx-Cb-Mae" firstAttribute="top" secondItem="fvn-Zb-tIi" secondAttribute="bottom" constant="150" id="GAj-di-VbD"/>
+                            <constraint firstItem="fvn-Zb-tIi" firstAttribute="width" secondItem="rOW-Ig-IfP" secondAttribute="width" multiplier="0.8" id="U0U-FS-Yy7"/>
+                            <constraint firstItem="4Yb-LT-Kt5" firstAttribute="top" secondItem="TZS-YA-ngm" secondAttribute="bottom" constant="10" id="aDo-o2-s14"/>
+                            <constraint firstItem="fvn-Zb-tIi" firstAttribute="top" secondItem="4Yb-LT-Kt5" secondAttribute="bottom" constant="200" id="cSi-B3-oeH"/>
+                            <constraint firstItem="TZS-YA-ngm" firstAttribute="centerX" secondItem="rOW-Ig-IfP" secondAttribute="centerX" id="jfR-Xc-8Qv"/>
+                            <constraint firstItem="fvn-Zb-tIi" firstAttribute="centerX" secondItem="rOW-Ig-IfP" secondAttribute="centerX" id="k9M-Bk-Vwk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="新規登録" id="Be3-h5-iLL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b8H-fl-OoK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1622" y="37"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="k0c-KF-3qs">
+            <objects>
+                <navigationController storyboardIdentifier="SignUpNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="dKK-PN-5pW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uda-hM-f3s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="d63-Z0-ffq" kind="relationship" relationship="rootViewController" id="9cb-gx-5nO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ewh-Id-n1B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="809" y="37"/>
         </scene>
     </scenes>
     <resources>
