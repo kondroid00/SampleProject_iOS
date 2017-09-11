@@ -9,12 +9,12 @@
 import Foundation
 import Unbox
 
-struct User {
+struct UserDto {
     let id: String?
     let name: String?
 }
 
-extension User: Unboxable {
+extension UserDto: Unboxable {
     init(unboxer: Unboxer) throws {
         self.id = try unboxer.unbox(key: "id")
         self.name = try unboxer.unbox(key: "name")

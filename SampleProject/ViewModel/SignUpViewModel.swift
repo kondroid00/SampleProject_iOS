@@ -19,6 +19,8 @@ class SignUpViewModel: BaseViewModel {
         userModel.createUser(params).subscribeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { data in
+                    AccountManager.instance.token = data.token
+                    AccountManager.instance.user = data.user
                     onSuccess()
                 },
                 onError: {error in

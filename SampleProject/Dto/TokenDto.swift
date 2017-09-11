@@ -9,12 +9,12 @@
 import Foundation
 import Unbox
 
-struct Token {
+struct TokenDto {
     let token: String?
     let expiredAt: Int64?
 }
 
-extension Token: Unboxable {
+extension TokenDto: Unboxable {
     init(unboxer: Unboxer) throws {
         self.token = try unboxer.unbox(key: "token")
         self.expiredAt = try unboxer.unbox(key: "expiredAt")

@@ -20,7 +20,7 @@ class BaseRequest {
         var token: String?
         
         init() {
-            self.token = AccountManager.instance.getToken()
+            self.token = AccountManager.instance.token?.token
         }
     }
     

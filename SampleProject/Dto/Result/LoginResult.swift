@@ -10,8 +10,8 @@ import Foundation
 import Unbox
 
 struct LoginResult {
-    let user: User?
-    let token: Token?
+    let user: UserDto?
+    let token: TokenDto?
 }
 
 extension LoginResult: Unboxable {

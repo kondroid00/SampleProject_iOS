@@ -30,10 +30,11 @@
 		9EC307ED1F644AB600E3E810 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307EC1F644AB600E3E810 /* LoginRequest.swift */; };
 		9EC307F01F644AFA00E3E810 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307EF1F644AFA00E3E810 /* UserCreateRequest.swift */; };
 		9EC307F21F644B8600E3E810 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F11F644B8600E3E810 /* UsersModel.swift */; };
-		9EC307F41F65242B00E3E810 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F31F65242B00E3E810 /* User.swift */; };
-		9EC307F61F6524BA00E3E810 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F51F6524BA00E3E810 /* Token.swift */; };
+		9EC307F41F65242B00E3E810 /* UserDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F31F65242B00E3E810 /* UserDto.swift */; };
+		9EC307F61F6524BA00E3E810 /* TokenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F51F6524BA00E3E810 /* TokenDto.swift */; };
 		9EC307F81F652D0F00E3E810 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F71F652D0F00E3E810 /* SignUpViewController.swift */; };
 		9EC307FA1F65427D00E3E810 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC307F91F65427D00E3E810 /* SignUpViewModel.swift */; };
+		9EDD75AE1F65B3FA00BC4C56 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDD75AD1F65B3FA00BC4C56 /* Extensions.swift */; };
 		B266225EA121EF438256177A /* Pods_SampleProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB60136D667641EBA20678A /* Pods_SampleProjectUITests.framework */; };
 		E606D8BC441941E770E8E81B /* Pods_SampleProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6305A2F317C533E1C957E053 /* Pods_SampleProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -91,10 +92,11 @@
 		9EC307EC1F644AB600E3E810 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		9EC307EF1F644AFA00E3E810 /* UserCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		9EC307F11F644B8600E3E810 /* UsersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
-		9EC307F31F65242B00E3E810 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9EC307F51F6524BA00E3E810 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		9EC307F31F65242B00E3E810 /* UserDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDto.swift; sourceTree = "<group>"; };
+		9EC307F51F6524BA00E3E810 /* TokenDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenDto.swift; sourceTree = "<group>"; };
 		9EC307F71F652D0F00E3E810 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9EC307F91F65427D00E3E810 /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		9EDD75AD1F65B3FA00BC4C56 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D12217CED975B8AE1FC354C9 /* Pods-SampleProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProject/Pods-SampleProject.debug.xcconfig"; sourceTree = "<group>"; };
 		FF21FC2AEE6AF97351EC3569 /* Pods-SampleProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProjectTests/Pods-SampleProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0498231F5C3BBD00CE7282 /* UIViewExtension.swift */,
+				9EDD75AD1F65B3FA00BC4C56 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -172,8 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				9E0498311F5C6F2D00CE7282 /* Result */,
-				9EC307F31F65242B00E3E810 /* User.swift */,
-				9EC307F51F6524BA00E3E810 /* Token.swift */,
+				9EC307F31F65242B00E3E810 /* UserDto.swift */,
+				9EC307F51F6524BA00E3E810 /* TokenDto.swift */,
 			);
 			path = Dto;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				9E0498241F5C3BBD00CE7282 /* UIViewExtension.swift in Sources */,
 				9E76FDD91F5C12680006FEA4 /* TopViewController.swift in Sources */,
 				9EC307F21F644B8600E3E810 /* UsersModel.swift in Sources */,
+				9EDD75AE1F65B3FA00BC4C56 /* Extensions.swift in Sources */,
 				9E99205A1F5BFE820025DEBB /* ViewController.swift in Sources */,
 				9EC307F01F644AFA00E3E810 /* UserCreateRequest.swift in Sources */,
 				9E0498281F5C4E7400CE7282 /* BaseViewModel.swift in Sources */,
@@ -654,8 +658,8 @@
 				9EC307FA1F65427D00E3E810 /* SignUpViewModel.swift in Sources */,
 				9E04982A1F5C4F3D00CE7282 /* AuthModel.swift in Sources */,
 				9EC307F81F652D0F00E3E810 /* SignUpViewController.swift in Sources */,
-				9EC307F41F65242B00E3E810 /* User.swift in Sources */,
-				9EC307F61F6524BA00E3E810 /* Token.swift in Sources */,
+				9EC307F41F65242B00E3E810 /* UserDto.swift in Sources */,
+				9EC307F61F6524BA00E3E810 /* TokenDto.swift in Sources */,
 				9EC307E61F6443F500E3E810 /* LoginResult.swift in Sources */,
 				9E0498261F5C4DA800CE7282 /* TopViewModel.swift in Sources */,
 				9E76FDD71F5C119C0006FEA4 /* BaseViewController.swift in Sources */,

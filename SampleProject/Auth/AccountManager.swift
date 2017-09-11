@@ -13,30 +13,32 @@ class AccountManager {
     private static let UDTokenKey = "token"
     private static let UDUserIdKey = "user_id"
     
-    var token: String?
+    //private var token: String?
+    
+    var token: TokenDto? {
+        get {
+            if let token = self.token {
+                if token.expiredAt! > Date().toNanoMillis() {
+                    return token
+                }
+            }
+            return nil
+        }
+        
+        set {}
+    }
+    
+    var user: UserDto? {
+        get {
+            return self.user
+        }
+        
+        set {
+           UserDefaults.standard.set(newValue?.id, forKey: AccountManager.UDUserIdKey)
+        }
+    }
     
     static let instance: AccountManager = AccountManager()
-    
-    func hasToken() -> Bool {
-        if UserDefaults.standard.string(forKey: AccountManager.UDTokenKey) != nil {
-            return true
-        }
-        return false
-    }
-    
-    func getToken() -> String? {
-        if self.token != nil {
-            return self.token
-        } else {
-            self.token = UserDefaults.standard.string(forKey: AccountManager.UDTokenKey)
-            return self.token
-        }
-    }
-    
-    func saveToken(_ token: String) {
-        self.token = token
-        UserDefaults.standard.set(token, forKey: AccountManager.UDTokenKey)
-    }
     
     func hasUserId() -> Bool {
         if UserDefaults.standard.string(forKey: AccountManager.UDUserIdKey) != nil {
@@ -47,9 +49,5 @@ class AccountManager {
     
     func getUserId() -> String? {
         return UserDefaults.standard.string(forKey: AccountManager.UDUserIdKey)
-    }
-    
-    func saveUserId(_ userId: String) {
-        UserDefaults.standard.set(userId, forKey: AccountManager.UDUserIdKey)
     }
 }
