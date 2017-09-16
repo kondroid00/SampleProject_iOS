@@ -22,6 +22,7 @@ class TopViewController: BaseViewController {
         super.viewDidLoad()
 
         if AccountManager.instance.hasUserId() {
+            buttonStart.isHidden = true
             login()
         }
         
@@ -45,12 +46,35 @@ class TopViewController: BaseViewController {
         guard let nc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpNavigationController") as? UINavigationController else{
             return
         }
-        //_ = nc.pushViewController(vc, animated: false)
         self.show(nc, sender: nil)
     }
     
     private func login() {
-        vm.login()
+        showProgress(true)
+        vm.login(
+            onSuccess: {[weak self] in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.goToHome()
+                weakSelf.showProgress(false)
+            },
+            onFailed: {[weak self](error) in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.showErrorAlert(message: "ログインに失敗しました。",
+                                        title: "ログイン失敗",
+                                        button1Title: "リトライ",
+                                        handler1: {[weak self](action) in
+                                            guard let weakSelf = self else {
+                                                return
+                                            }
+                                            weakSelf.login()
+                })
+                weakSelf.showProgress(false)
+            }
+        )
     }
 
     /*

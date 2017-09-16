@@ -32,7 +32,7 @@ class HomeViewModel: BaseViewModel {
                 onDisposed: {
                     
                 }
-        )
+        ).addDisposableTo(disposeBag)
     }
     
     

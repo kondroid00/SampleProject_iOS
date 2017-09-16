@@ -10,6 +10,7 @@ target 'SampleProject' do
   pod 'RxCocoa',   '~> 3.0'
   pod 'Unbox',     '~> 2.5'
   pod 'Wrap',      '~> 2.1'
+  pod 'MBProgressHUD', '~> 1.0.0'
   # Pods for SampleProject
 
   target 'SampleProjectTests' do

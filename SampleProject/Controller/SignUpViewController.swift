@@ -70,13 +70,23 @@ class SignUpViewController: BaseViewController, UITextFieldDelegate {
     
     func signUp() {
         if 0 < name.characters.count && name.characters.count <= 12 {
+            showProgress(true)
             vm.signUp(
                 name: name,
                 onSuccess: {[weak self] in
-                
+                    guard let weakSelf = self else {
+                        return
+                    }
+                    weakSelf.goToHome()
+                    weakSelf.showProgress(false)
                 },
                 onFailed: {[weak self](error) in
-                    
+                    guard let weakSelf = self else {
+                        return
+                    }
+                    weakSelf.showErrorAlert(message: "サインアップに失敗しました。",
+                                            title: "失敗")
+                    weakSelf.showProgress(false)
                 }
             )
             

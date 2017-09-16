@@ -13,22 +13,22 @@ class TopViewModel: BaseViewModel {
     
     let authModel = AuthModel()
     
-    func login() {
+    func login(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void) {
         let params = LoginRequest.Params()
         params.userId = AccountManager.instance.getUserId()
         authModel.login(params).subscribeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { data in
-            
+                    onSuccess()
                 },
                 onError: {error in
-                    
+                    onFailed(error)
                 },
                 onCompleted: {
             
                 },
                 onDisposed: {
                 }
-        )
+        ).addDisposableTo(disposeBag)
     }
 }
