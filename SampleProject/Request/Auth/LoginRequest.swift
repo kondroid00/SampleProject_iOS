@@ -7,11 +7,22 @@
 //
 
 import Foundation
+import Unbox
 
 class LoginRequest : BaseRequest {
     
     class Params {
         var userId: String?
+    }
+    
+    struct Result : Unboxable {
+        let user: UserDto?
+        let token: TokenDto?
+        
+        init(unboxer: Unboxer) throws {
+            self.user = try unboxer.unbox(key: "user")
+            self.token = try unboxer.unbox(key: "token")
+        }
     }
     
     init() {

@@ -40,7 +40,7 @@ class BaseRequest {
         return self.request(params)
     }
     
-    func request<T1 :Unboxable>(_ params: UserCreateRequest.Params?) -> Observable<T1> {
+    func request<T1 :Unboxable, T2>(_ params: T2?) -> Observable<T1> {
         requesting = true
         return Observable.create {[weak self](observer) in
             guard let weakSelf = self else {
@@ -76,47 +76,6 @@ class BaseRequest {
             }
             print("===========API============")
             print(request.debugDescription)
-            
-            return Disposables.create {
-                request.cancel()
-            }
-        }
-    }
-    
-    func request<T1 :Unboxable, T2>(_ params: T2?) -> Observable<T1> {
-        requesting = true
-        return Observable.create {[weak self](observer) in
-            guard let weakSelf = self else {
-                return Disposables.create()
-            }
-            var requestParams :Parameters = [:]
-            if let params = params {
-                do {
-                    requestParams = try wrap(params)
-                } catch {
-                    return Disposables.create()
-                }
-            }
-            let request = Alamofire.request(weakSelf.url, method: weakSelf.method, parameters: requestParams, encoding: JSONEncoding.default).responseData {(response) in
-                guard let weakSelf = self else {
-                    return
-                }
-                defer {
-                    weakSelf.requesting = false
-                }
-                do {
-                    switch response.result {
-                    case .success(let data):
-                        let result: T1 = try unbox(data: data)
-                        observer.onNext(result)
-                        observer.onCompleted()
-                    case .failure(let error):
-                        observer.onError(error)
-                    }
-                } catch(let error) {
-                    observer.onError(error)
-                }
-            }
             
             return Disposables.create {
                 request.cancel()

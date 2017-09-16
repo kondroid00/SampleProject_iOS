@@ -13,7 +13,7 @@ class AuthModel {
     
     private let loginRequest = LoginRequest()
     
-    func login(_ params: LoginRequest.Params) -> Observable<LoginResult> {
+    func login(_ params: LoginRequest.Params) -> Observable<LoginRequest.Result> {
         return loginRequest.request(params)
     }
     

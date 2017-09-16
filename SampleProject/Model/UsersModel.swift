@@ -13,7 +13,7 @@ class UsersModel {
     
     private let createRequest = UserCreateRequest()
     
-    func createUser(_ params: UserCreateRequest.Params) -> Observable<CreateUserResult> {
+    func createUser(_ params: UserCreateRequest.Params) -> Observable<UserCreateRequest.Result> {
         return createRequest.request(params)
     }
     
