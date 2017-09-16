@@ -20,8 +20,17 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tableView.register(RoomsTableViewCell.self, forCellReuseIdentifier: RoomsTableViewCell.className)
+        
+        
+        vm.fetchRoom()
+        
+        vm.rooms.bind(to: tableView.rx.items(cellIdentifier: RoomsTableViewCell.className, cellType: RoomsTableViewCell.self)) {
+            (index, item, cell) in
+            print(item.id)
+        }.addDisposableTo(disposeBag)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +51,7 @@ class HomeViewController: BaseViewController {
 
 }
 
+/*
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,3 +75,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+*/

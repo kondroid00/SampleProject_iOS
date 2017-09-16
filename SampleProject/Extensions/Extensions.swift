@@ -8,8 +8,15 @@
 
 import Foundation
 
+extension NSObject {
+    class var className: String {
+        return String(describing: self)
+    }
+}
+
 extension Date {
     func toNanoMillis() -> Int64! {
         return Int64(self.timeIntervalSince1970 * 1000000)
     }
 }
+

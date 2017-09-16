@@ -12,7 +12,7 @@ import RxSwift
 
 class HomeViewModel: BaseViewModel {
     
-    var rooms: Variable<[RoomDto]?> = Variable([])
+    let rooms: BehaviorSubject<[RoomDto]> = BehaviorSubject(value: [])
     
     let roomsModel = RoomsModel()
     
@@ -20,10 +20,10 @@ class HomeViewModel: BaseViewModel {
         let params = RoomFetchRequest.Params()
         roomsModel.fetchRooms(params).subscribeOn(MainScheduler.instance)
             .subscribe(
-                onNext: { data in
-            
+                onNext: {[weak self](data) in
+                    self?.rooms.onNext(data.rooms ?? [])
                 },
-                onError: {error in
+                onError: {[weak self](error) in
                     
                 },
                 onCompleted: {

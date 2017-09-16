@@ -17,17 +17,15 @@ class RoomFetchRequest : BaseRequest {
     }
     
     struct Result: Unboxable {
-        let user: UserDto?
-        let token: TokenDto?
+        let rooms: ([RoomDto])?
         
         init(unboxer: Unboxer) throws {
-            self.user = try unboxer.unbox(key: "user")
-            self.token = try unboxer.unbox(key: "token")
+            self.rooms = try unboxer.unbox(key: "rooms")
         }
     }
     
     init() {
-        let path = "/user"
+        let path = "/room"
         super.init(path: path)
     }
 }

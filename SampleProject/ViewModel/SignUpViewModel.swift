@@ -23,7 +23,7 @@ class SignUpViewModel: BaseViewModel {
                     AccountManager.instance.user = data.user
                     onSuccess()
                 },
-                onError: {error in
+                onError: { error in
                     onFailed(error)
                 },
                 onCompleted: {
