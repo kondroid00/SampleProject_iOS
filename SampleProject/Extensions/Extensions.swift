@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension NSObject {
     class var className: String {
@@ -20,3 +21,12 @@ extension Date {
     }
 }
 
+extension UITableView {
+    func registerNib<T: UITableViewCell>(_ cellType: T.Type) {
+        register(UINib(nibName: cellType.className, bundle: nil), forCellReuseIdentifier: cellType.className)
+    }
+    
+    func dequeueReusableCell<T: UITableViewCell>(cellType: T.Type, for indexPath: IndexPath) -> T {
+        return dequeueReusableCell(withIdentifier: cellType.className, for: indexPath) as! T
+    }
+}

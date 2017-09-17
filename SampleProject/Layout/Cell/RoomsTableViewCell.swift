@@ -9,6 +9,9 @@
 import UIKit
 
 class RoomsTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var themeLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +22,15 @@ class RoomsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setData(_ data: RoomDto?) {
+        guard let data = data else {
+            return
+        }
+        
+        nameLabel.text = data.name
+        themeLabel.text = data.theme
     }
     
 }
