@@ -16,16 +16,13 @@ class AccountManager {
     //private var token: String?
     
     var token: TokenDto? {
-        get {
+        didSet {
             if let token = self.token {
-                if token.expiredAt! > Date().toNanoMillis() {
-                    return token
+                if token.expiredAt! <= Date().toNanoMillis() {
+                    self.token = nil
                 }
             }
-            return nil
         }
-        
-        set {}
     }
     
     var user: UserDto? {

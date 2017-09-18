@@ -19,6 +19,7 @@ class TopViewModel: BaseViewModel {
         authModel.login(params).subscribeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { data in
+                    AccountManager.instance.token = data.token
                     onSuccess()
                 },
                 onError: {error in

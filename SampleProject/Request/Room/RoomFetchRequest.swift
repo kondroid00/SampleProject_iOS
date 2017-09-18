@@ -11,7 +11,7 @@ import Unbox
 
 class RoomFetchRequest : BaseRequest {
 
-    class Params {
+    class Params: BaseRequest.BaseAuthParams {
         var name: String?
         var theme: String?
     }
