@@ -13,7 +13,7 @@ import RxCocoa
 class HomeViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var addRoomButton: UIBarButtonItem!
     
     private let vm = HomeViewModel()
     private let dataSource = HomeDataSource()
