@@ -11,9 +11,11 @@ import RxSwift
 
 class SignUpViewModel: BaseViewModel {
     
+    var name: String?
+    
     let userModel = UsersModel()
     
-    func signUp(name: String, onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void) {
+    func signUp(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void, onCompleted: @escaping () -> Void) {
         let params = UserCreateRequest.Params()
         params.name = name
         userModel.createUser(params).subscribeOn(MainScheduler.instance)
@@ -23,16 +25,11 @@ class SignUpViewModel: BaseViewModel {
                     AccountManager.instance.user = data.user
                     onSuccess()
                 },
-                onError: { error in
-                    onFailed(error)
-                },
-                onCompleted: {
-                    
-                },
+                onError: onFailed,
+                onCompleted: onCompleted,
                 onDisposed: {
                     
                 }
             ).addDisposableTo(disposeBag)
     }
-    
 }

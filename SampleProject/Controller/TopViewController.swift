@@ -63,7 +63,7 @@ class TopViewController: BaseViewController {
                 guard let weakSelf = self else {
                     return
                 }
-                weakSelf.showErrorAlert(message: "ログインに失敗しました。",
+                weakSelf.showAlert(message: "ログインに失敗しました。",
                                         title: "ログイン失敗",
                                         button1Title: "リトライ",
                                         handler1: {[weak self](action) in

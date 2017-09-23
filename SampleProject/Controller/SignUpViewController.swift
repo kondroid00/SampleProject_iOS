@@ -10,14 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SignUpViewController: BaseViewController, UITextFieldDelegate {
+class SignUpViewController: BaseTFViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
-    
-    fileprivate var editingTextField:UITextField?
-    
-    private var name: String = ""
     
     private let vm = SignUpViewModel()
     
@@ -31,7 +27,7 @@ class SignUpViewController: BaseViewController, UITextFieldDelegate {
                 return
             }
             
-            weakSelf.name = value.trimmingCharacters(in: .whitespacesAndNewlines)
+            weakSelf.vm.name = value.trimmingCharacters(in: .whitespacesAndNewlines)
         }).addDisposableTo(disposeBag)
 
         signUpButton.rx.tap.subscribe(onNext: {[weak self] in
@@ -42,82 +38,41 @@ class SignUpViewController: BaseViewController, UITextFieldDelegate {
         }).addDisposableTo(disposeBag)
         
         nameTextField.delegate = self
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let notificationCenter = NotificationCenter.default
-        
-        notificationCenter.addObserver(self,
-                                       selector: #selector(SignUpViewController.handleKeyboardWillShowNotification(_:)),
-                                       name: NSNotification.Name.UIKeyboardWillShow,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(SignUpViewController.handleKeyboardWillHideNotification(_:)),
-                                       name: NSNotification.Name.UIKeyboardWillHide,
-                                       object: nil)
-        
-        
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     func signUp() {
-        if 0 < name.characters.count && name.characters.count <= 12 {
+        if let name = vm.name, 0 < name.characters.count && name.characters.count <= 12 {
             showProgress(true)
             vm.signUp(
-                name: name,
                 onSuccess: {[weak self] in
                     guard let weakSelf = self else {
                         return
                     }
                     weakSelf.goToHome()
-                    weakSelf.showProgress(false)
                 },
                 onFailed: {[weak self](error) in
                     guard let weakSelf = self else {
                         return
                     }
-                    weakSelf.showErrorAlert(message: "サインアップに失敗しました。",
+                    weakSelf.showAlert(message: "サインアップに失敗しました。",
                                             title: "失敗")
+                },
+                onCompleted: {[weak self] in
+                    guard let weakSelf = self else {
+                        return
+                    }
                     weakSelf.showProgress(false)
                 }
             )
             
         } else {
-            showErrorAlert(message: "1文字以上12文字以下で入力してください")
+            showAlert(message: "1文字以上12文字以下で入力してください")
         }
     }
     
-    func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if editingTextField != nil {
-            return false
-        }
-        editingTextField = textField
-        return true
-    }
-    
-    func handleKeyboardWillShowNotification(_ notification: Notification) {
-
-    }
-    
-    func handleKeyboardWillHideNotification(_ notification: Notification) {
-        self.editingTextField = nil
-    }
-
 }

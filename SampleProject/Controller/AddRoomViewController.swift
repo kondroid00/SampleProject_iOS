@@ -7,29 +7,73 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class AddRoomViewController: UIViewController {
+class AddRoomViewController: BaseTFViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var themeTextField: UITextField!
+    
+    @IBOutlet weak var createButton: UIButton!
+    
+    fileprivate let vm = AddRoomViewModel()
+    
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameTextField.rx.text.subscribe(onNext: {[weak self](value) in
+            guard let weakSelf = self, let value = value else {
+                return
+            }
+            weakSelf.vm.name.onNext(value.trimmingCharacters(in: .whitespacesAndNewlines))
+        }).addDisposableTo(disposeBag)
+        
+        themeTextField.rx.text.subscribe(onNext: {[weak self](value) in
+            guard let weakSelf = self, let value = value else {
+                return
+            }
+            weakSelf.vm.theme.onNext(value.trimmingCharacters(in: .whitespacesAndNewlines))
+        }).addDisposableTo(disposeBag)
+        
+        createButton.rx.tap.subscribe(onNext: {[weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.createRoom()
+        }).addDisposableTo(disposeBag)
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func createRoom() {
+        showProgress(true)
+        vm.createRoom(
+            onSuccess: {[weak self] in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.showAlert(message: "ルーム作成に成功しました。",
+                                        title: "ルーム作成")
+            },
+            onFailed: {[weak self](error) in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.showAlert(message: "ルーム作成に失敗しました。",
+                                        title: "失敗")
+            },
+            onCompleted: {[weak self] in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.showProgress(false)
+        })
     }
-    */
-
+    
 }

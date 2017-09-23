@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import RxSwift
 
 class HomeViewModel: BaseViewModel {
@@ -34,7 +33,4 @@ class HomeViewModel: BaseViewModel {
                 }
         ).addDisposableTo(disposeBag)
     }
-    
-    
-    
 }

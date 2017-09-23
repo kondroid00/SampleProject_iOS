@@ -16,6 +16,8 @@
 		9E04982F1F5C4FCD00CE7282 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E04982E1F5C4FCD00CE7282 /* BaseRequest.swift */; };
 		9E0498351F5C720C00CE7282 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0498341F5C720C00CE7282 /* NetworkConstants.swift */; };
 		9E2628311F7211490060BDDD /* AddRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2628301F7211490060BDDD /* AddRoomViewController.swift */; };
+		9E2A89E81F7367480090F32E /* AddRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A89E71F7367480090F32E /* AddRoomViewModel.swift */; };
+		9E2A89EA1F74AF810090F32E /* RoomCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A89E91F74AF810090F32E /* RoomCreateRequest.swift */; };
 		9E5CCA0B1F5F9443002C1774 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CCA0A1F5F9443002C1774 /* AccountManager.swift */; };
 		9E76FDD71F5C119C0006FEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E76FDD61F5C119C0006FEA4 /* BaseViewController.swift */; };
 		9E76FDD91F5C12680006FEA4 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E76FDD81F5C12680006FEA4 /* TopViewController.swift */; };
@@ -78,6 +80,8 @@
 		9E04982E1F5C4FCD00CE7282 /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		9E0498341F5C720C00CE7282 /* NetworkConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		9E2628301F7211490060BDDD /* AddRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRoomViewController.swift; sourceTree = "<group>"; };
+		9E2A89E71F7367480090F32E /* AddRoomViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRoomViewModel.swift; sourceTree = "<group>"; };
+		9E2A89E91F74AF810090F32E /* RoomCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCreateRequest.swift; sourceTree = "<group>"; };
 		9E5CCA0A1F5F9443002C1774 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		9E76FDD61F5C119C0006FEA4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9E76FDD81F5C12680006FEA4 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 				9E0498271F5C4E7400CE7282 /* BaseViewModel.swift */,
 				9EC307F91F65427D00E3E810 /* SignUpViewModel.swift */,
 				9EDD75B11F6782D000BC4C56 /* HomeViewModel.swift */,
+				9E2A89E71F7367480090F32E /* AddRoomViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				9EF30EFA1F6D240800CF03E1 /* RoomFetchRequest.swift */,
+				9E2A89E91F74AF810090F32E /* RoomCreateRequest.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -677,6 +683,7 @@
 				9EF30EF81F6D235C00CF03E1 /* RoomsModel.swift in Sources */,
 				9E04982C1F5C4F5900CE7282 /* BaseModel.swift in Sources */,
 				9EDD75B01F6632C300BC4C56 /* HomeViewController.swift in Sources */,
+				9E2A89E81F7367480090F32E /* AddRoomViewModel.swift in Sources */,
 				9E0498241F5C3BBD00CE7282 /* UIViewExtension.swift in Sources */,
 				9E76FDD91F5C12680006FEA4 /* TopViewController.swift in Sources */,
 				9EC307F21F644B8600E3E810 /* UsersModel.swift in Sources */,
@@ -688,6 +695,7 @@
 				9EC307FA1F65427D00E3E810 /* SignUpViewModel.swift in Sources */,
 				9E04982A1F5C4F3D00CE7282 /* AuthModel.swift in Sources */,
 				9EC307F81F652D0F00E3E810 /* SignUpViewController.swift in Sources */,
+				9E2A89EA1F74AF810090F32E /* RoomCreateRequest.swift in Sources */,
 				9EC307F41F65242B00E3E810 /* UserDto.swift in Sources */,
 				9EDD75B21F6782D000BC4C56 /* HomeViewModel.swift in Sources */,
 				9EC307F61F6524BA00E3E810 /* TokenDto.swift in Sources */,

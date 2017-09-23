@@ -11,10 +11,7 @@ import Unbox
 
 class RoomFetchRequest : BaseRequest {
 
-    class Params: BaseRequest.BaseAuthParams {
-        var name: String?
-        var theme: String?
-    }
+    class Params: BaseRequest.BaseAuthParams {}
     
     struct Result: Unboxable {
         let rooms: ([RoomDto])?

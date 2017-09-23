@@ -42,7 +42,7 @@ class BaseViewController: UIViewController {
     */
     
     /*
-    func showErrorAlert(message: String = "通信に失敗しました。", title: String = "Error") {
+    func showAlert(message: String = "通信に失敗しました。", title: String = "Error") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         let acceptButton = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
         alert.addAction(acceptButton)
@@ -50,12 +50,12 @@ class BaseViewController: UIViewController {
     }
     */
     
-    func showErrorAlert(message: String = "通信に失敗しました。",
-                        title: String = "エラー",
-                        button1Title: String = "OK",
-                        handler1: ((UIAlertAction) -> Swift.Void)? = nil,
-                        button2Title: String = "キャンセル",
-                        handler2: ((UIAlertAction) -> Swift.Void)? = nil) {
+    func showAlert(message: String = "通信に失敗しました。",
+                   title: String = "エラー",
+                   button1Title: String = "OK",
+                   handler1: ((UIAlertAction) -> Swift.Void)? = nil,
+                   button2Title: String = "キャンセル",
+                   handler2: ((UIAlertAction) -> Swift.Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         let button1 = UIAlertAction(title: button1Title, style: UIAlertActionStyle.default, handler: handler1)
         alert.addAction(button1)
@@ -80,5 +80,63 @@ class BaseViewController: UIViewController {
         }else{
             progressHUD.hide(animated: false)
         }
+    }
+}
+
+class BaseTFViewController: BaseViewController, UITextFieldDelegate {
+
+    private var editingTextField:UITextField?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BaseTFViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self,
+                                       selector: #selector(BaseTFViewController.handleKeyboardWillShowNotification(_:)),
+                                       name: NSNotification.Name.UIKeyboardWillShow,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(BaseTFViewController.handleKeyboardWillHideNotification(_:)),
+                                       name: NSNotification.Name.UIKeyboardWillHide,
+                                       object: nil)
+        
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if editingTextField != nil {
+            return false
+        }
+        editingTextField = textField
+        return true
+    }
+    
+    func handleKeyboardWillShowNotification(_ notification: Notification) {
+
+    }
+    
+    func handleKeyboardWillHideNotification(_ notification: Notification) {
+        self.editingTextField = nil
     }
 }
