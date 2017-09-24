@@ -101,9 +101,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZS-YA-ngm">
-                                <rect key="frame" x="37.5" y="127" width="290" height="16"/>
+                                <rect key="frame" x="37.5" y="127" width="173.5" height="16"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="名前を入力してください（最大12文字）">
+                                    <fragment content="名前を入力してください">
                                         <attributes>
                                             <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>

@@ -39,7 +39,7 @@ class SignUpViewController: BaseTFViewController {
         
         //Validation
         let nameValid: Observable<String?> = nameTextField.rx.text.orEmpty
-            .map { text -> String? in Validation.textLength(text: text, min: 1, max: 20)}
+            .map { text -> String? in Validation.textLength(text: text, min: 1, max: 12)}
             .shareReplay(1)
         nameValid
             .bind(to: nameValidationLabel.rx.text)
@@ -53,10 +53,7 @@ class SignUpViewController: BaseTFViewController {
                 return
             }
             weakSelf.signUpButton.isEnabled = value
-        })
-        
-        nameTextField.delegate = self
-        
+        }).addDisposableTo(disposeBag)
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,29 +61,23 @@ class SignUpViewController: BaseTFViewController {
     }
     
     func signUp() {
-        if let name = vm.name, 0 < name.characters.count && name.characters.count <= 12 {
-            showProgress(true)
-            vm.signUp(
-                onSuccess: {[weak self] in
-                    guard let weakSelf = self else {
-                        return
-                    }
-                    weakSelf.goToHome()
-                    weakSelf.showProgress(false)
-                },
-                onFailed: {[weak self](error) in
-                    guard let weakSelf = self else {
-                        return
-                    }
-                    weakSelf.showAlert(message: "サインアップに失敗しました。",
-                                            title: "失敗")
-                    weakSelf.showProgress(false)
+        showProgress(true)
+        vm.signUp(
+            onSuccess: {[weak self] in
+                guard let weakSelf = self else {
+                    return
                 }
-            )
-            
-        } else {
-            showAlert(message: "1文字以上12文字以下で入力してください")
-        }
+                weakSelf.goToHome()
+                weakSelf.showProgress(false)
+            },
+            onFailed: {[weak self](error) in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.showAlert(message: "サインアップに失敗しました。",
+                                   title: "失敗")
+                weakSelf.showProgress(false)
+            }
+        )
     }
-    
 }

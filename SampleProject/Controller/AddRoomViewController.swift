@@ -68,7 +68,7 @@ class AddRoomViewController: BaseTFViewController {
                 return
             }
             weakSelf.createButton.isEnabled = value
-        })
+        }).addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

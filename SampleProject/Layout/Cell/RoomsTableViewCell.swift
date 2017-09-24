@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import RxSwift
 
 class RoomsTableViewCell: UITableViewCell {
+    var disposeBag = DisposeBag()
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var themeLabel: UILabel!
@@ -22,6 +24,10 @@ class RoomsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        self.disposeBag = DisposeBag()
     }
     
     func setData(_ data: RoomDto?) {
