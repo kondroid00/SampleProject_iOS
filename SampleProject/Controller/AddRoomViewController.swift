@@ -14,12 +14,12 @@ class AddRoomViewController: BaseTFViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var themeTextField: UITextField!
+    @IBOutlet weak var nameValidationLabel: UILabel!
+    @IBOutlet weak var themeValidationLabel: UILabel!
     
     @IBOutlet weak var createButton: UIButton!
     
     fileprivate let vm = AddRoomViewModel()
-    
-    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,30 @@ class AddRoomViewController: BaseTFViewController {
             weakSelf.createRoom()
         }).addDisposableTo(disposeBag)
 
+        //Validation
+        let nameValid: Observable<String?> = nameTextField.rx.text.orEmpty
+            .map { text -> String? in Validation.textLength(text: text, min: 1, max: 20)}
+            .shareReplay(1)
+        nameValid
+            .bind(to: nameValidationLabel.rx.text)
+            .addDisposableTo(disposeBag)
+        
+        let themeValid: Observable<String?> = themeTextField.rx.text.orEmpty
+            .map { text -> String? in Validation.textLength(text: text, min: 1, max: 20)}
+            .shareReplay(1)
+        themeValid
+            .bind(to: themeValidationLabel.rx.text)
+            .addDisposableTo(disposeBag)
+        
+        let createButtonValid = Observable<Bool>.combineLatest(nameValid, themeValid) { name, theme in
+            return name == nil && theme == nil
+        }.shareReplay(1)
+        createButtonValid.subscribe(onNext: {[weak self](value) in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.createButton.isEnabled = value
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,7 +83,8 @@ class AddRoomViewController: BaseTFViewController {
                     return
                 }
                 weakSelf.showAlert(message: "ルーム作成に成功しました。",
-                                        title: "ルーム作成")
+                                   title: "ルーム作成")
+                weakSelf.showProgress(false)
             },
             onFailed: {[weak self](error) in
                 guard let weakSelf = self else {
@@ -67,13 +92,9 @@ class AddRoomViewController: BaseTFViewController {
                 }
                 weakSelf.showAlert(message: "ルーム作成に失敗しました。",
                                         title: "失敗")
-            },
-            onCompleted: {[weak self] in
-                guard let weakSelf = self else {
-                    return
-                }
                 weakSelf.showProgress(false)
-        })
+            }
+        )
     }
     
 }

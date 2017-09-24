@@ -7,49 +7,30 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import MBProgressHUD
 
 class BaseViewController: UIViewController {
 
     let progressHUD = MBProgressHUD.init()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         progressHUD.layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         self.view.addSubview(progressHUD)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.showProgress(false)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    /*
-    func showAlert(message: String = "通信に失敗しました。", title: String = "Error") {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let acceptButton = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
-        alert.addAction(acceptButton)
-        present(alert, animated: true)
-    }
-    */
-    
     func showAlert(message: String = "通信に失敗しました。",
                    title: String = "エラー",
                    button1Title: String = "OK",
@@ -90,53 +71,12 @@ class BaseTFViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BaseTFViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let notificationCenter = NotificationCenter.default
-        
-        notificationCenter.addObserver(self,
-                                       selector: #selector(BaseTFViewController.handleKeyboardWillShowNotification(_:)),
-                                       name: NSNotification.Name.UIKeyboardWillShow,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(BaseTFViewController.handleKeyboardWillHideNotification(_:)),
-                                       name: NSNotification.Name.UIKeyboardWillHide,
-                                       object: nil)
-        
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if editingTextField != nil {
-            return false
-        }
-        editingTextField = textField
-        return true
-    }
-    
-    func handleKeyboardWillShowNotification(_ notification: Notification) {
-
-    }
-    
-    func handleKeyboardWillHideNotification(_ notification: Notification) {
-        self.editingTextField = nil
+        let tapBackground = UITapGestureRecognizer()
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        view.addGestureRecognizer(tapBackground)
     }
 }

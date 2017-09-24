@@ -16,7 +16,6 @@ class TopViewController: BaseViewController {
     
     
     let vm = TopViewModel()
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -15,7 +15,7 @@ class SignUpViewModel: BaseViewModel {
     
     let userModel = UsersModel()
     
-    func signUp(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void, onCompleted: @escaping () -> Void) {
+    func signUp(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void) {
         let params = UserCreateRequest.Params()
         params.name = name
         userModel.createUser(params).subscribeOn(MainScheduler.instance)
@@ -25,11 +25,7 @@ class SignUpViewModel: BaseViewModel {
                     AccountManager.instance.user = data.user
                     onSuccess()
                 },
-                onError: onFailed,
-                onCompleted: onCompleted,
-                onDisposed: {
-                    
-                }
+                onError: onFailed
             ).addDisposableTo(disposeBag)
     }
 }

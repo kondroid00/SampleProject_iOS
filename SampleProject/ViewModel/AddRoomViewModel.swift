@@ -16,7 +16,7 @@ class AddRoomViewModel: BaseViewModel {
  
     let roomsModel = RoomsModel()
     
-    func createRoom(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void, onCompleted: @escaping () -> Void) {
+    func createRoom(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void) {
         let params = RoomCreateRequest.Params()
         do {
             params.name = try self.name.value()
@@ -33,11 +33,7 @@ class AddRoomViewModel: BaseViewModel {
                     }
                     onSuccess()
                 },
-                onError: onFailed,
-                onCompleted: onCompleted,
-                onDisposed: {
-                    
-                }
+                onError: onFailed
         ).addDisposableTo(disposeBag)
         
     }

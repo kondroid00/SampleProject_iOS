@@ -17,7 +17,6 @@ class HomeViewController: BaseViewController {
     
     private let vm = HomeViewModel()
     private let dataSource = HomeDataSource()
-    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,6 @@ class HomeViewController: BaseViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -58,7 +56,6 @@ class HomeDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
         }
     }
     
-    //MARK: - TableView Delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -18,6 +18,7 @@
 		9E2628311F7211490060BDDD /* AddRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2628301F7211490060BDDD /* AddRoomViewController.swift */; };
 		9E2A89E81F7367480090F32E /* AddRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A89E71F7367480090F32E /* AddRoomViewModel.swift */; };
 		9E2A89EA1F74AF810090F32E /* RoomCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A89E91F74AF810090F32E /* RoomCreateRequest.swift */; };
+		9E2A89EE1F76EC460090F32E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A89ED1F76EC460090F32E /* Validation.swift */; };
 		9E5CCA0B1F5F9443002C1774 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CCA0A1F5F9443002C1774 /* AccountManager.swift */; };
 		9E76FDD71F5C119C0006FEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E76FDD61F5C119C0006FEA4 /* BaseViewController.swift */; };
 		9E76FDD91F5C12680006FEA4 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E76FDD81F5C12680006FEA4 /* TopViewController.swift */; };
@@ -82,6 +83,7 @@
 		9E2628301F7211490060BDDD /* AddRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRoomViewController.swift; sourceTree = "<group>"; };
 		9E2A89E71F7367480090F32E /* AddRoomViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRoomViewModel.swift; sourceTree = "<group>"; };
 		9E2A89E91F74AF810090F32E /* RoomCreateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCreateRequest.swift; sourceTree = "<group>"; };
+		9E2A89ED1F76EC460090F32E /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		9E5CCA0A1F5F9443002C1774 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		9E76FDD61F5C119C0006FEA4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9E76FDD81F5C12680006FEA4 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,14 @@
 			path = Dto;
 			sourceTree = "<group>";
 		};
+		9E2A89EC1F76CE610090F32E /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				9E2A89ED1F76EC460090F32E /* Validation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
 		9E5CCA091F5F9443002C1774 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +239,7 @@
 		9E76FDD11F5C112C0006FEA4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				9E2A89EC1F76CE610090F32E /* Validation */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -250,13 +261,6 @@
 				9EF30EF71F6D235C00CF03E1 /* RoomsModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		9E76FDD41F5C112C0006FEA4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		9E76FDD51F5C112C0006FEA4 /* ViewModel */ = {
@@ -305,7 +309,6 @@
 				9E76FDD11F5C112C0006FEA4 /* Helper */,
 				9E76FDD21F5C112C0006FEA4 /* Layout */,
 				9E76FDD31F5C112C0006FEA4 /* Model */,
-				9E76FDD41F5C112C0006FEA4 /* View */,
 				9E76FDD51F5C112C0006FEA4 /* ViewModel */,
 				9E9920571F5BFE820025DEBB /* AppDelegate.swift */,
 				9E9920591F5BFE820025DEBB /* ViewController.swift */,
@@ -704,6 +707,7 @@
 				9EDD75B61F67841400BC4C56 /* RoomDto.swift in Sources */,
 				9E2628311F7211490060BDDD /* AddRoomViewController.swift in Sources */,
 				9EF30EFF1F6D2D6100CF03E1 /* RoomsTableViewCell.swift in Sources */,
+				9E2A89EE1F76EC460090F32E /* Validation.swift in Sources */,
 				9E76FDD71F5C119C0006FEA4 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
