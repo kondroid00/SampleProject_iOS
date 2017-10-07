@@ -41,7 +41,7 @@ class BaseViewController: UIViewController {
         let button1 = UIAlertAction(title: button1Title, style: UIAlertActionStyle.default, handler: handler1)
         alert.addAction(button1)
         if handler2 != nil {
-            let button2 = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: handler2)
+            let button2 = UIAlertAction(title: button2Title, style: UIAlertActionStyle.default, handler: handler2)
             alert.addAction(button2)
         }
         
