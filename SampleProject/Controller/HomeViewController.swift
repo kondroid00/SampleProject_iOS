@@ -36,12 +36,25 @@ class HomeViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FromHomeToChat" {
+            let vc = segue.destination as? ChatViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                
+            }
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return view.frame.height * 0.10
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "FromHomeToChat", sender: nil)
     }
 }
 
@@ -71,6 +84,4 @@ class HomeDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
         cell.setData(items[indexPath.row])
         return cell
     }
-    
-    
 }
