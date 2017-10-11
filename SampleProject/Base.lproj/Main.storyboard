@@ -411,6 +411,11 @@
                             <constraint firstItem="xjR-2T-ViF" firstAttribute="top" secondItem="Yo5-dR-S5d" secondAttribute="bottom" id="vck-kL-N4n"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="inputTextField" destination="mLm-L5-fvz" id="FTn-Ec-bpM"/>
+                        <outlet property="sendButton" destination="CpV-vp-n75" id="V0o-Mg-ZeB"/>
+                        <outlet property="tableView" destination="xjR-2T-ViF" id="qmG-PY-ycT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cl-vy-hRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

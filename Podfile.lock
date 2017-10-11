@@ -4,6 +4,7 @@ PODS:
   - RxCocoa (3.6.1):
     - RxSwift (~> 3.6)
   - RxSwift (3.6.1)
+  - Starscream (3.0.2)
   - Unbox (2.5.0)
   - Wrap (2.1.1)
 
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - MBProgressHUD (~> 1.0.0)
   - RxCocoa (~> 3.0)
   - RxSwift (~> 3.0)
+  - Starscream (~> 3.0.2)
   - Unbox (~> 2.5)
   - Wrap (~> 2.1)
 
@@ -20,9 +22,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  Starscream: b512c62f6706421221b5ceb2ba01a9f58aca5bea
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
   Wrap: 9cc7da7551bb81d0846cb3df9fb624c6c32d267d
 
-PODFILE CHECKSUM: 8420a0c66f04a68f9ccb06d8f3429449958eb195
+PODFILE CHECKSUM: ed399caa4bfdea1702afec0514767ca3d85adf7b
 
 COCOAPODS: 1.3.1

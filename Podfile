@@ -11,6 +11,7 @@ target 'SampleProject' do
   pod 'Unbox',     '~> 2.5'
   pod 'Wrap',      '~> 2.1'
   pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'Starscream', '~> 3.0.2'
   # Pods for SampleProject
 
   target 'SampleProjectTests' do
