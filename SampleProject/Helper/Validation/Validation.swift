@@ -8,10 +8,9 @@
 
 import Foundation
 
-class Validation {
+struct Validation {
 
     static func textLength(text: String, min: Int? = nil, max: Int? = nil) -> String? {
-        
         let count = text.characters.count
         
         var minResult = false

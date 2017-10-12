@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 class ChatViewModel: BaseViewModel {
-    let messages: BehaviorSubject<[ChatDto]> = BehaviorSubject(value: [])
+    let messages: BehaviorSubject<[WebSocketMessageDto]> = BehaviorSubject(value: [])
     
     
     

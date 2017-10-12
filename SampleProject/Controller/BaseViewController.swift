@@ -21,6 +21,7 @@ class BaseViewController: UIViewController {
 
         progressHUD.layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         self.view.addSubview(progressHUD)
+        
     }
 
     override func didReceiveMemoryWarning() {

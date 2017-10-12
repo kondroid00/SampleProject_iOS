@@ -22,15 +22,19 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         
         tableView.registerNib(RoomsTableViewCell.self)
-        
-        vm.fetchRoom()
-        
+
         vm.rooms
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(disposeBag)
         
         tableView.delegate = self
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        vm.fetchRoom()
     }
 
     override func didReceiveMemoryWarning() {

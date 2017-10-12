@@ -75,7 +75,7 @@ extension ChatViewController: UITableViewDelegate {
 
 class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType {
     
-    typealias Element = [ChatDto]
+    typealias Element = [WebSocketMessageDto]
     
     var items: Element = []
     
@@ -105,6 +105,7 @@ class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
 //  WebSocket
 //---------------------------------------------------------------------------
 extension ChatViewController: WebSocketLogicDelegate {
+
     func websocketLogicDidConnect() {
         
     }
@@ -113,8 +114,16 @@ extension ChatViewController: WebSocketLogicDelegate {
         
     }
     
-    func websocketLogicDidReceiveMessage(text: String) {
-        print(text)
+    func websocketLogicDidReceiveJoined(data: WebSocketActionDto) {
+        
+    }
+    
+    func websocketLogicDidReceiveRemoved(data: WebSocketActionDto) {
+        
+    }
+    
+    func websocketLogicDidReceiveMessage(data: WebSocketMessageDto) {
+
     }
 }
 
