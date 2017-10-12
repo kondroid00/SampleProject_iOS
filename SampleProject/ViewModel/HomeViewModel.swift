@@ -17,7 +17,9 @@ class HomeViewModel: BaseViewModel {
     
     func fetchRoom() {
         let params = RoomFetchRequest.Params()
-        roomsModel.fetchRooms(params).subscribeOn(MainScheduler.instance)
+        roomsModel.fetchRooms(params)
+            .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self](data) in
                     self?.rooms.onNext(data.rooms ?? [])

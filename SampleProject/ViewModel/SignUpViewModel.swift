@@ -18,7 +18,9 @@ class SignUpViewModel: BaseViewModel {
     func signUp(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void) {
         let params = UserCreateRequest.Params()
         params.name = name
-        userModel.createUser(params).subscribeOn(MainScheduler.instance)
+        userModel.createUser(params)
+            .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { data in
                     AccountManager.instance.token = data.token

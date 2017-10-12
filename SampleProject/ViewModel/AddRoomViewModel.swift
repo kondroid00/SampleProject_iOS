@@ -24,7 +24,9 @@ class AddRoomViewModel: BaseViewModel {
         } catch {
             
         }
-        roomsModel.createRoom(params).subscribeOn(MainScheduler.instance)
+        roomsModel.createRoom(params)
+            .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self](data) in
                     if let room = data.room {
