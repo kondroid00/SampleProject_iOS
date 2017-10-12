@@ -16,7 +16,9 @@ class TopViewModel: BaseViewModel {
     func login(onSuccess: @escaping () -> Void, onFailed: @escaping (Error) -> Void) {
         let params = LoginRequest.Params()
         params.userId = AccountManager.instance.getUserId()
-        authModel.login(params).subscribeOn(MainScheduler.instance)
+        authModel.login(params)
+            .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { data in
                     AccountManager.instance.token = data.token
