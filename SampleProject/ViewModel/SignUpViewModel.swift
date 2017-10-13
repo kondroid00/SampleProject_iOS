@@ -28,6 +28,6 @@ class SignUpViewModel: BaseViewModel {
                     onSuccess()
                 },
                 onError: onFailed
-            ).addDisposableTo(disposeBag)
+            ).disposed(by: disposeBag)
     }
 }

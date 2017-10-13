@@ -25,7 +25,7 @@ class HomeViewController: BaseViewController {
 
         vm.rooms
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         tableView.delegate = self
         

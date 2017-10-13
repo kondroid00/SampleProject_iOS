@@ -36,7 +36,7 @@ class AddRoomViewModel: BaseViewModel {
                     onSuccess()
                 },
                 onError: onFailed
-        ).addDisposableTo(disposeBag)
+        ).disposed(by: disposeBag)
         
     }
 

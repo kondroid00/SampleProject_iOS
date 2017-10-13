@@ -29,21 +29,21 @@ class AddRoomViewController: BaseTFViewController {
                 return
             }
             weakSelf.vm.name.onNext(value.trimmingCharacters(in: .whitespacesAndNewlines))
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         themeTextField.rx.text.subscribe(onNext: {[weak self](value) in
             guard let weakSelf = self, let value = value else {
                 return
             }
             weakSelf.vm.theme.onNext(value.trimmingCharacters(in: .whitespacesAndNewlines))
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         createButton.rx.tap.subscribe(onNext: {[weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.createRoom()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
 
         //Validation
         let nameValid: Observable<String?> = nameTextField.rx.text.orEmpty
@@ -51,14 +51,14 @@ class AddRoomViewController: BaseTFViewController {
             .shareReplay(1)
         nameValid
             .bind(to: nameValidationLabel.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         let themeValid: Observable<String?> = themeTextField.rx.text.orEmpty
             .map { text -> String? in Validation.textLength(text: text, min: 1, max: 20)}
             .shareReplay(1)
         themeValid
             .bind(to: themeValidationLabel.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         let createButtonValid = Observable<Bool>.combineLatest(nameValid, themeValid) { name, theme in
             return name == nil && theme == nil
@@ -68,7 +68,7 @@ class AddRoomViewController: BaseTFViewController {
                 return
             }
             weakSelf.createButton.isEnabled = value
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

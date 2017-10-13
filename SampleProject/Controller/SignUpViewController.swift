@@ -28,14 +28,14 @@ class SignUpViewController: BaseTFViewController {
                     return
                 }
                 weakSelf.vm.name = value.trimmingCharacters(in: .whitespacesAndNewlines)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
 
         signUpButton.rx.tap.subscribe(onNext: {[weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.signUp()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         //Validation
         let nameValid: Observable<String?> = nameTextField.rx.text.orEmpty
@@ -43,7 +43,7 @@ class SignUpViewController: BaseTFViewController {
             .shareReplay(1)
         nameValid
             .bind(to: nameValidationLabel.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         let signUpButtonValid = nameValid.map { name in
             return name == nil
@@ -53,7 +53,7 @@ class SignUpViewController: BaseTFViewController {
                 return
             }
             weakSelf.signUpButton.isEnabled = value
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     override func didReceiveMemoryWarning() {

@@ -29,11 +29,11 @@ class ChatViewController: BaseTFViewController {
                 return
             }
             weakSelf.tapSendButton()
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
 
         vm.messages
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         tableView.delegate = self
         

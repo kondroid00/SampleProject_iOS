@@ -33,6 +33,6 @@ class TopViewModel: BaseViewModel {
                 },
                 onDisposed: {
                 }
-        ).addDisposableTo(disposeBag)
+        ).disposed(by: disposeBag)
     }
 }

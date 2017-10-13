@@ -32,7 +32,7 @@ class TopViewController: BaseViewController {
             
             weakSelf.signUp()
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
     }
 
