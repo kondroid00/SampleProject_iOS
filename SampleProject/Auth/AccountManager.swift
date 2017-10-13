@@ -26,12 +26,8 @@ class AccountManager {
     }
     
     var user: UserDto? {
-        get {
-            return self.user
-        }
-        
-        set {
-           UserDefaults.standard.set(newValue?.id, forKey: AccountManager.UDUserIdKey)
+        didSet {
+           UserDefaults.standard.set(self.user?.id, forKey: AccountManager.UDUserIdKey)
         }
     }
     

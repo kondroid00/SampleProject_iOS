@@ -16,7 +16,8 @@ class WebSocketLogic {
     var socket: WebSocket?
     weak var delegate: WebSocketLogicDelegate?
     
-    var clientId: Int?
+    var clientNo: Int?
+    var name: String?
     
     let disposeBag = DisposeBag()
     
@@ -32,17 +33,63 @@ class WebSocketLogic {
         socket?.disconnect()
     }
     
+
+    
+    fileprivate func write(prefix: ChatConstants.MsgPrefix, params: [String: Any]) {
+        let data = try! JSONSerialization.data(withJSONObject: params, options: [])
+        let json = prefix.rawValue + String(bytes: data, encoding: .utf8)!
+        socket?.write(string: json)
+    }
+    
+    //-------------------------------------------------------------------------------------------
+    //  Send
+    //-------------------------------------------------------------------------------------------
+    func sendJoin(user: UserDto) {
+        let params: [String: Any] = [
+            "name": user.name,
+            "userId": user.id
+        ]
+        write(prefix: .Joined, params: params)
+    }
+    
     func sendMessage(message: String) {
-        guard let socket = socket else {
+        guard let clientNo = clientNo, let name = name else {
             return
         }
+        
         let params: [String: Any] = [
-            "clientId": clientId ?? 0,
+            "clientNo": clientNo,
+            "name": name,
             "message": message
         ]
-        let data = try! JSONSerialization.data(withJSONObject: params, options: [])
-        let json = ChatConstants.MsgPrefix.Message.rawValue + String(bytes: data, encoding: .utf8)!
-        socket.write(string: json)
+        write(prefix: .Message, params: params)
+    }
+    
+    //-------------------------------------------------------------------------------------------
+    //  Receive
+    //-------------------------------------------------------------------------------------------
+    fileprivate func receiveJoined(data: WebSocketActionDto) {
+        if clientNo == nil || name == nil {
+            for client in data.clients {
+                if(client.selfFlag) {
+                    clientNo = client.clientNo
+                    name = client.name
+                }
+            }
+        }
+        delegate?.websocketLogicDidReceiveJoined(data: data)
+    }
+    
+    fileprivate func receiveRemoved(data: WebSocketActionDto) {
+        delegate?.websocketLogicDidReceiveRemoved(data: data)
+    }
+    
+    fileprivate func receiveMessage(data: WebSocketMessageDto) {
+        delegate?.websocketLogicDidReceiveMessage(data: data)
+    }
+    
+    fileprivate func receiveError(data: WebSocketErrorDto) {
+        delegate?.websocketLogicDidReceiveError(data: data)
     }
     
 }
@@ -77,10 +124,7 @@ extension WebSocketLogic: WebSocketDelegate {
                 .observeOn(MainScheduler.instance)
                 .subscribe(
                     onNext: {[weak self](data) in
-                        guard let weakSelf = self else {
-                            return
-                        }
-                        weakSelf.delegate?.websocketLogicDidReceiveJoined(data: data)
+                        self?.receiveJoined(data: data)
                     }
                 ).disposed(by: disposeBag)
             print(Date().timeIntervalSince(start))
@@ -91,10 +135,7 @@ extension WebSocketLogic: WebSocketDelegate {
                 .observeOn(MainScheduler.instance)
                 .subscribe(
                     onNext: {[weak self](data) in
-                        guard let weakSelf = self else {
-                            return
-                        }
-                        weakSelf.delegate?.websocketLogicDidReceiveRemoved(data: data)
+                        self?.receiveRemoved(data: data)
                     }
                 ).disposed(by: disposeBag)
 
@@ -105,12 +146,21 @@ extension WebSocketLogic: WebSocketDelegate {
                 .observeOn(MainScheduler.instance)
                 .subscribe(
                     onNext: {[weak self](data) in
-                        guard let weakSelf = self else {
-                            return
-                        }
-                        weakSelf.delegate?.websocketLogicDidReceiveMessage(data: data)
+                        self?.receiveMessage(data: data)
                     }
                 ).disposed(by: disposeBag)
+            
+        case .Error:
+            let observable: Observable<WebSocketErrorDto> = Helper.parseObservable(jsonString: data)
+            observable
+                .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
+                .observeOn(MainScheduler.instance)
+                .subscribe(
+                    onNext: {[weak self](data) in
+                        self?.receiveError(data: data)
+                    }
+                ).disposed(by: disposeBag)
+    
         }
     }
     
@@ -123,4 +173,5 @@ protocol WebSocketLogicDelegate: class {
     func websocketLogicDidReceiveJoined(data: WebSocketActionDto) -> Void
     func websocketLogicDidReceiveRemoved(data: WebSocketActionDto) -> Void
     func websocketLogicDidReceiveMessage(data: WebSocketMessageDto) -> Void
+    func websocketLogicDidReceiveError(data: WebSocketErrorDto) -> Void
 }

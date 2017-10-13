@@ -15,5 +15,6 @@ struct ChatConstants {
         case Joined = "001"
         case Removed = "002"
         case Message = "003"
+        case Error = "999"
     }
 }

@@ -16,10 +16,10 @@ class ChatViewController: BaseTFViewController {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     
-    private let vm = ChatViewModel()
+    fileprivate let vm = ChatViewModel()
     private let dataSource = ChatDataSource()
     
-    private let webSocketLogic = WebSocketLogic()
+    fileprivate let webSocketLogic = WebSocketLogic()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +107,9 @@ class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
 extension ChatViewController: WebSocketLogicDelegate {
 
     func websocketLogicDidConnect() {
-        
+        if let user = AccountManager.instance.user {
+            webSocketLogic.sendJoin(user: user)
+        }
     }
     
     func websocketLogicDidDisconnect(error: Error?) {
@@ -124,6 +126,10 @@ extension ChatViewController: WebSocketLogicDelegate {
     
     func websocketLogicDidReceiveMessage(data: WebSocketMessageDto) {
 
+    }
+    
+    func websocketLogicDidReceiveError(data: WebSocketErrorDto) {
+        
     }
 }
 

@@ -48,6 +48,7 @@
 		9EDD75B01F6632C300BC4C56 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDD75AF1F6632C300BC4C56 /* HomeViewController.swift */; };
 		9EDD75B21F6782D000BC4C56 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDD75B11F6782D000BC4C56 /* HomeViewModel.swift */; };
 		9EDD75B61F67841400BC4C56 /* RoomDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDD75B51F67841400BC4C56 /* RoomDto.swift */; };
+		9EE961A81F90A747000E7C9E /* WebSocketErrorDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE961A71F90A747000E7C9E /* WebSocketErrorDto.swift */; };
 		9EF30EF81F6D235C00CF03E1 /* RoomsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF30EF71F6D235C00CF03E1 /* RoomsModel.swift */; };
 		9EF30EFB1F6D240800CF03E1 /* RoomFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF30EFA1F6D240800CF03E1 /* RoomFetchRequest.swift */; };
 		9EF30EFF1F6D2D6100CF03E1 /* RoomsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF30EFD1F6D2D6100CF03E1 /* RoomsTableViewCell.swift */; };
@@ -127,6 +128,7 @@
 		9EDD75AF1F6632C300BC4C56 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9EDD75B11F6782D000BC4C56 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9EDD75B51F67841400BC4C56 /* RoomDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomDto.swift; sourceTree = "<group>"; };
+		9EE961A71F90A747000E7C9E /* WebSocketErrorDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketErrorDto.swift; sourceTree = "<group>"; };
 		9EF30EF71F6D235C00CF03E1 /* RoomsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsModel.swift; sourceTree = "<group>"; };
 		9EF30EFA1F6D240800CF03E1 /* RoomFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomFetchRequest.swift; sourceTree = "<group>"; };
 		9EF30EFD1F6D2D6100CF03E1 /* RoomsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsTableViewCell.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			children = (
 				9E5C8C151F8F4F4800D76B28 /* WebSocketMessageDto.swift */,
 				9E5C8C171F8F4F7200D76B28 /* WebSocketActionDto.swift */,
+				9EE961A71F90A747000E7C9E /* WebSocketErrorDto.swift */,
 			);
 			path = WebSocket;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				9E0498351F5C720C00CE7282 /* NetworkConstants.swift in Sources */,
 				9EC307ED1F644AB600E3E810 /* LoginRequest.swift in Sources */,
 				9E5C8C1C1F8F6DE200D76B28 /* ErrorConstants.swift in Sources */,
+				9EE961A81F90A747000E7C9E /* WebSocketErrorDto.swift in Sources */,
 				9E5CCA0B1F5F9443002C1774 /* AccountManager.swift in Sources */,
 				9E04982F1F5C4FCD00CE7282 /* BaseRequest.swift in Sources */,
 				9EF30EF81F6D235C00CF03E1 /* RoomsModel.swift in Sources */,
