@@ -12,12 +12,18 @@ import Unbox
 import RxSwift
 
 class WebSocketLogic {
-    
-    var socket: WebSocket?
+    // Starscream
+    private var socket: WebSocket?
     weak var delegate: WebSocketLogicDelegate?
     
-    var clientNo: Int?
-    var name: String?
+    // ClientData
+    private var clientNo: Int?
+    private var name: String?
+    
+    // PingPong
+    private static let PingPongInterval: UInt64 = 5 // ５秒間Pongが帰ってこなかったら切断
+    fileprivate var pongReceiveTime: Int64? // 最後にPongを受け取った時間
+    private var timer: Timer?
     
     let disposeBag = DisposeBag()
     
@@ -25,15 +31,19 @@ class WebSocketLogic {
         socket = WebSocket(url: URL(string: NetworkConstants.getWebSocketUrl() + "/" + roomId)!)
         if let socket = socket {
             socket.delegate = self
+            socket.pongDelegate = self
             socket.connect()
+        }
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
+            self?.checkPingPong()
         }
     }
     
     func disconnect() {
         socket?.disconnect()
+        timer?.invalidate()
     }
-    
-
     
     fileprivate func write(prefix: ChatConstants.MsgPrefix, params: [String: Any]) {
         let data = try! JSONSerialization.data(withJSONObject: params, options: [])
@@ -92,6 +102,22 @@ class WebSocketLogic {
         delegate?.websocketLogicDidReceiveError(data: data)
     }
     
+    //-------------------------------------------------------------------------------------------
+    //  PingPong
+    //-------------------------------------------------------------------------------------------
+    func checkPingPong() {
+        // Ping送信
+        socket?.write(ping: Data())
+        
+        // Pongが帰ってきてるかチェック
+        if let pongReceiveTime = pongReceiveTime {
+            let diff = Date().toSeconds() - pongReceiveTime
+            if diff > WebSocketLogic.PingPongInterval {
+                delegate?.websocketLogicDidFailed()
+                disconnect()
+            }
+        }
+    }
 }
 
 extension WebSocketLogic: WebSocketDelegate {
@@ -167,9 +193,16 @@ extension WebSocketLogic: WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {}
 }
 
+extension WebSocketLogic: WebSocketPongDelegate {
+    func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
+        self.pongReceiveTime = Date().toSeconds()
+    }
+}
+
 protocol WebSocketLogicDelegate: class {
     func websocketLogicDidConnect() -> Void
     func websocketLogicDidDisconnect(error: Error?) -> Void
+    func websocketLogicDidFailed() -> Void
     func websocketLogicDidReceiveJoined(data: WebSocketActionDto) -> Void
     func websocketLogicDidReceiveRemoved(data: WebSocketActionDto) -> Void
     func websocketLogicDidReceiveMessage(data: WebSocketMessageDto) -> Void

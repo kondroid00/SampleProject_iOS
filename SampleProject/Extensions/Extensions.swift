@@ -19,6 +19,14 @@ extension Date {
     func toNanoMillis() -> Int64! {
         return Int64(self.timeIntervalSince1970 * 1000000)
     }
+    
+    func toMillis() -> Int64! {
+        return Int64(self.timeIntervalSince1970 * 1000)
+    }
+    
+    func toSeconds() -> Int64! {
+        return Int64(self.timeIntervalSince1970)
+    }
 }
 
 extension UITableView {

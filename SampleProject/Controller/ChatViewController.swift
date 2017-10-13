@@ -116,6 +116,10 @@ extension ChatViewController: WebSocketLogicDelegate {
         
     }
     
+    func websocketLogicDidFailed() {
+        
+    }
+    
     func websocketLogicDidReceiveJoined(data: WebSocketActionDto) {
         
     }
