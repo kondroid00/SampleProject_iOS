@@ -16,6 +16,7 @@ class ChatViewController: BaseTFViewController {
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var inputTextViewHeight: NSLayoutConstraint!
+    var lastInputHeight: CGFloat?
     
     fileprivate let vm = ChatViewModel()
     private let dataSource = ChatDataSource()
@@ -83,9 +84,23 @@ class ChatViewController: BaseTFViewController {
         }
     }
     
+
     private func adjustInputHeight() {
         let size:CGSize = inputTextView.sizeThatFits(inputTextView.frame.size)
-        inputTextViewHeight.constant = size.height
+        if lastInputHeight != size.height {
+            lastInputHeight = size.height
+            inputTextViewHeight.constant = size.height
+            ChatViewController.focusLastCell(tableView: tableView, lastRow: vm.messageCount, animated: false)
+        }
+    }
+    
+    // 最新アイテムにスクロール
+    fileprivate static func focusLastCell(tableView: UITableView?, lastRow: Int, animated: Bool = true) {
+        if lastRow > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                tableView?.scrollToRow(at: IndexPath(row: lastRow - 1, section: 0), at: .bottom, animated: animated)
+            }
+        }
     }
 }
 
@@ -111,17 +126,7 @@ class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
         if case .next(let items) = observedEvent {
             self.items = items
             tableView.reloadData()
-            
-            // 最新アイテムにスクロール
-            let last = items.count
-            if last > 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {[weak self] in
-                    guard let weakSelf = self else {
-                        return
-                    }
-                    tableView.scrollToRow(at: IndexPath(row: items.count - 1, section: 0), at: .bottom, animated: true)
-                }
-            }
+            ChatViewController.focusLastCell(tableView: tableView, lastRow: items.count)
         }
     }
     
