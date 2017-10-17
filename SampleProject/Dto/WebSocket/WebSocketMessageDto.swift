@@ -11,12 +11,21 @@ import Unbox
 
 struct WebSocketMessageDto {
     let clientNo: Int
+    let name: String
     let message: String
+    
+    init(clientNo: Int, name: String, message: String) {
+        self.clientNo = clientNo
+        self.name = name
+        self.message = message
+    }
 }
 
 extension WebSocketMessageDto: Unboxable {
+    
     init(unboxer: Unboxer) throws {
         self.clientNo = try unboxer.unbox(key: "clientNo")
+        self.name = try unboxer.unbox(key: "name")
         self.message = try unboxer.unbox(key: "message")
     }
 }

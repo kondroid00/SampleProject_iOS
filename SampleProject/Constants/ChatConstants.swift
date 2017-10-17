@@ -17,4 +17,10 @@ struct ChatConstants {
         case Message = "003"
         case Error = "999"
     }
+    
+    enum ChatMsgOwner {
+        case MySelf
+        case Other
+        case Unknown
+    }
 }

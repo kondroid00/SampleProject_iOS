@@ -13,5 +13,13 @@ class ChatViewModel: BaseViewModel {
     let messages: BehaviorSubject<[WebSocketMessageDto]> = BehaviorSubject(value: [])
     
     
-    
+    func addMessage(_ data: WebSocketMessageDto) {
+        do {
+            var currentMessages = try messages.value()
+            currentMessages.append(data)
+            messages.onNext(currentMessages)
+        } catch {
+            
+        }
+    }
 }

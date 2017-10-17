@@ -24,12 +24,17 @@ class ChatViewController: BaseTFViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.registerNib(ChatOutgoingTableViewCell.self)
+        tableView.registerNib(ChatIncomingTableViewCell.self)
+        
         sendButton.rx.tap.subscribe(onNext: {[weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.tapSendButton()
         }).disposed(by: disposeBag)
+        
+        dataSource.webSocketLogic = webSocketLogic
 
         vm.messages
             .bind(to: tableView.rx.items(dataSource: dataSource))
@@ -76,6 +81,7 @@ extension ChatViewController: UITableViewDelegate {
 class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType {
     
     typealias Element = [WebSocketMessageDto]
+    weak var webSocketLogic: WebSocketLogic?
     
     var items: Element = []
     
@@ -95,9 +101,22 @@ class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(cellType: RoomsTableViewCell.self, for: indexPath)
-        //cell.setData(items[indexPath.row])
-        return cell
+        let data = items[indexPath.row]
+        let owner = webSocketLogic != nil ? webSocketLogic!.isSelf(data: data) : .Unknown
+        switch owner {
+        case .MySelf:
+            let cell = tableView.dequeueReusableCell(cellType: ChatOutgoingTableViewCell.self, for: indexPath) as! ChatOutgoingTableViewCell
+            cell.messageLabel.text = data.message
+            cell.nameLabel.text = data.name
+            return cell
+        case .Other:
+            let cell = tableView.dequeueReusableCell(cellType: ChatIncomingTableViewCell.self, for: indexPath) as! ChatIncomingTableViewCell
+            cell.messageLabel.text = data.message
+            cell.nameLabel.text = data.name
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }
 
@@ -129,7 +148,7 @@ extension ChatViewController: WebSocketLogicDelegate {
     }
     
     func websocketLogicDidReceiveMessage(data: WebSocketMessageDto) {
-
+        vm.addMessage(data)
     }
     
     func websocketLogicDidReceiveError(data: WebSocketErrorDto) {

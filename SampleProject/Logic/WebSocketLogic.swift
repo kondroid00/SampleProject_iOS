@@ -10,6 +10,7 @@ import Foundation
 import Starscream
 import Unbox
 import RxSwift
+import Wrap
 
 class WebSocketLogic {
     // Starscream
@@ -45,6 +46,13 @@ class WebSocketLogic {
         timer?.invalidate()
     }
     
+    func isSelf(data: WebSocketMessageDto) -> ChatConstants.ChatMsgOwner {
+        if let logicClientNo = clientNo {
+            return logicClientNo == data.clientNo ? .MySelf : .Other
+        }
+        return .Unknown
+    }
+    
     fileprivate func write(prefix: ChatConstants.MsgPrefix, params: [String: Any]) {
         let data = try! JSONSerialization.data(withJSONObject: params, options: [])
         let json = prefix.rawValue + String(bytes: data, encoding: .utf8)!
@@ -67,11 +75,17 @@ class WebSocketLogic {
             return
         }
         
-        let params: [String: Any] = [
-            "clientNo": clientNo,
-            "name": name,
-            "message": message
-        ]
+        let data = WebSocketMessageDto(clientNo: clientNo,
+                                       name: name,
+                                       message: message)
+        
+        var params: [String: Any] = [:]
+        do {
+            params = try wrap(data)
+        } catch {
+            return
+        }
+        
         write(prefix: .Message, params: params)
     }
     
@@ -143,7 +157,6 @@ extension WebSocketLogic: WebSocketDelegate {
         // jsonのパースを非同期で行う
         switch prefix {
         case .Joined:
-            let start = Date()
             let observable: Observable<WebSocketActionDto> = Helper.parseObservable(jsonString: data)
             observable
                 .subscribeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
@@ -153,7 +166,6 @@ extension WebSocketLogic: WebSocketDelegate {
                         self?.receiveJoined(data: data)
                     }
                 ).disposed(by: disposeBag)
-            print(Date().timeIntervalSince(start))
         case .Removed:
             let observable: Observable<WebSocketActionDto> = Helper.parseObservable(jsonString: data)
             observable
