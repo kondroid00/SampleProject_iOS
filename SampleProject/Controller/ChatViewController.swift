@@ -51,7 +51,9 @@ class ChatViewController: BaseTFViewController {
         }).disposed(by: disposeBag)
 
         
-        tableView.delegate = self
+        //tableView.delegate = self
+        tableView.estimatedRowHeight = 30
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         inputTextView.delegate = self
         
@@ -86,7 +88,7 @@ class ChatViewController: BaseTFViewController {
     
 
     private func adjustInputHeight() {
-        let size:CGSize = inputTextView.sizeThatFits(inputTextView.frame.size)
+        let size = inputTextView.sizeThatFits(inputTextView.frame.size)
         if lastInputHeight != size.height {
             lastInputHeight = size.height
             inputTextViewHeight.constant = size.height
@@ -108,12 +110,6 @@ class ChatViewController: BaseTFViewController {
 //---------------------------------------------------------------------------
 //  TableView
 //---------------------------------------------------------------------------
-extension ChatViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return view.frame.height * 0.10
-    }
-}
 
 class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType {
     
@@ -144,13 +140,15 @@ class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
         switch owner {
         case .MySelf:
             let cell = tableView.dequeueReusableCell(cellType: ChatOutgoingTableViewCell.self, for: indexPath) as! ChatOutgoingTableViewCell
-            cell.messageLabel.text = data.message
+            cell.messageText.text = data.message
             cell.nameLabel.text = data.name
+            cell.resizeCell()
             return cell
         case .Other:
             let cell = tableView.dequeueReusableCell(cellType: ChatIncomingTableViewCell.self, for: indexPath) as! ChatIncomingTableViewCell
-            cell.messageLabel.text = data.message
+            cell.messageText.text = data.message
             cell.nameLabel.text = data.name
+            cell.resizeCell()
             return cell
         default:
             return UITableViewCell()

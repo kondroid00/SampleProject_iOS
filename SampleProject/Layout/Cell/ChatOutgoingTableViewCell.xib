@@ -5,40 +5,40 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="KGk-i7-Jjw" customClass="ChatOutgoingTableViewCell" customModule="SampleProject" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="77" id="KGk-i7-Jjw" customClass="ChatOutgoingTableViewCell" customModule="SampleProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="77"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="397" height="76.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mu4-1H-T3E">
-                        <rect key="frame" x="80" y="10" width="220" height="40"/>
+                        <rect key="frame" x="67" y="10" width="310" height="40"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxN-79-r0t">
-                                <rect key="frame" x="10" y="10" width="200" height="20"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Text" translatesAutoresizingMaskIntoConstraints="NO" id="hNS-xj-XRG">
+                                <rect key="frame" x="5" y="5" width="300" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="UzN-Y8-1Bc"/>
-                                    <constraint firstAttribute="height" constant="20" id="Zz7-CP-Tmk"/>
+                                    <constraint firstAttribute="width" constant="300" id="Ip3-2p-Zxd"/>
+                                    <constraint firstAttribute="height" constant="30" id="SyW-Di-qnt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fxN-79-r0t" firstAttribute="top" secondItem="mu4-1H-T3E" secondAttribute="top" constant="10" id="Uyi-B0-5FS"/>
-                            <constraint firstAttribute="trailing" secondItem="fxN-79-r0t" secondAttribute="trailing" constant="10" id="Uyq-BM-vlf"/>
-                            <constraint firstAttribute="bottom" secondItem="fxN-79-r0t" secondAttribute="bottom" constant="10" id="o91-WW-ERt"/>
-                            <constraint firstItem="fxN-79-r0t" firstAttribute="leading" secondItem="mu4-1H-T3E" secondAttribute="leading" constant="10" id="soJ-yL-30k"/>
+                            <constraint firstAttribute="bottom" secondItem="hNS-xj-XRG" secondAttribute="bottom" constant="5" id="KuZ-aE-LB2"/>
+                            <constraint firstAttribute="trailing" secondItem="hNS-xj-XRG" secondAttribute="trailing" constant="5" id="MS2-Br-M1h"/>
+                            <constraint firstItem="hNS-xj-XRG" firstAttribute="leading" secondItem="mu4-1H-T3E" secondAttribute="leading" constant="5" id="Mgq-jm-P1g"/>
+                            <constraint firstItem="hNS-xj-XRG" firstAttribute="top" secondItem="mu4-1H-T3E" secondAttribute="top" constant="5" id="dn3-EY-bE2"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -53,7 +53,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubu-cv-Z5r">
-                        <rect key="frame" x="273.5" y="55" width="26.5" height="12"/>
+                        <rect key="frame" x="350.5" y="55" width="26.5" height="8.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -61,6 +61,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="mu4-1H-T3E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="AV2-iB-W3u"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Ubu-cv-Z5r" secondAttribute="bottom" constant="5" id="GC7-aM-fO6"/>
                     <constraint firstItem="Ubu-cv-Z5r" firstAttribute="trailing" secondItem="mu4-1H-T3E" secondAttribute="trailing" id="VoE-oD-BPc"/>
                     <constraint firstItem="Ubu-cv-Z5r" firstAttribute="top" secondItem="mu4-1H-T3E" secondAttribute="bottom" constant="5" id="YmE-Ve-Fto"/>
                     <constraint firstAttribute="trailing" secondItem="mu4-1H-T3E" secondAttribute="trailing" constant="20" id="jtF-V6-HdY"/>
@@ -69,10 +70,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="messageFrame" destination="mu4-1H-T3E" id="Zyd-Do-rfJ"/>
-                <outlet property="messageLabel" destination="fxN-79-r0t" id="naW-fP-5Gs"/>
+                <outlet property="messageText" destination="hNS-xj-XRG" id="wac-oO-wc5"/>
+                <outlet property="messageTextHeight" destination="SyW-Di-qnt" id="2XG-yX-Dhn"/>
+                <outlet property="messageTextWidth" destination="Ip3-2p-Zxd" id="1Ud-OP-vKn"/>
                 <outlet property="nameLabel" destination="Ubu-cv-Z5r" id="MjX-VQ-Qfg"/>
             </connections>
-            <point key="canvasLocation" x="34" y="74.5"/>
+            <point key="canvasLocation" x="-4.5" y="70.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -11,8 +11,10 @@ import UIKit
 class ChatOutgoingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var messageFrame: UIView!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageText: UITextView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var messageTextWidth: NSLayoutConstraint!
+    @IBOutlet weak var messageTextHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,4 +27,9 @@ class ChatOutgoingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func resizeCell() {
+        let size = messageText.sizeThatFits(messageText.frame.size)
+        messageTextWidth.constant = size.width
+        messageTextHeight.constant = size.height
+    }
 }
