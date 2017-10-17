@@ -65,9 +65,7 @@ class BaseViewController: UIViewController {
     }
 }
 
-class BaseTFViewController: BaseViewController, UITextFieldDelegate {
-
-    private var editingTextField:UITextField?
+class BaseTFViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()

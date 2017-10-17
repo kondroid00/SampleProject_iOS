@@ -368,12 +368,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4A-Fy-5di">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLm-L5-fvz">
-                                        <rect key="frame" x="5" y="5" width="314" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpV-vp-n75">
                                         <rect key="frame" x="324" y="5" width="46" height="30"/>
                                         <constraints>
@@ -382,17 +376,35 @@
                                         </constraints>
                                         <state key="normal" title="送信"/>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iry-Ko-4hK">
+                                        <rect key="frame" x="5" y="5" width="314" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="UrN-WA-lgs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.5" green="1" blue="0.50307472149999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CpV-vp-n75" secondAttribute="trailing" constant="5" id="21H-tq-RG6"/>
-                                    <constraint firstItem="CpV-vp-n75" firstAttribute="leading" secondItem="mLm-L5-fvz" secondAttribute="trailing" constant="5" id="B4a-Ym-aeR"/>
-                                    <constraint firstAttribute="height" constant="40" id="MW1-cs-mDC"/>
+                                    <constraint firstItem="CpV-vp-n75" firstAttribute="leading" secondItem="iry-Ko-4hK" secondAttribute="trailing" constant="5" id="H2o-be-xM6"/>
                                     <constraint firstAttribute="bottom" secondItem="CpV-vp-n75" secondAttribute="bottom" constant="5" id="PaK-P2-AfX"/>
-                                    <constraint firstItem="CpV-vp-n75" firstAttribute="leading" secondItem="mLm-L5-fvz" secondAttribute="trailing" constant="5" id="bxi-6c-YaA"/>
-                                    <constraint firstItem="mLm-L5-fvz" firstAttribute="leading" secondItem="q4A-Fy-5di" secondAttribute="leading" constant="5" id="iEv-ow-byG"/>
-                                    <constraint firstAttribute="bottom" secondItem="mLm-L5-fvz" secondAttribute="bottom" constant="5" id="mu2-FM-ewZ"/>
-                                    <constraint firstItem="mLm-L5-fvz" firstAttribute="top" secondItem="q4A-Fy-5di" secondAttribute="top" constant="5" id="uqc-jU-2vD"/>
+                                    <constraint firstItem="iry-Ko-4hK" firstAttribute="leading" secondItem="q4A-Fy-5di" secondAttribute="leading" constant="5" id="ZQe-7t-Exo"/>
+                                    <constraint firstItem="iry-Ko-4hK" firstAttribute="top" secondItem="q4A-Fy-5di" secondAttribute="top" constant="5" id="fAp-DI-dzU"/>
+                                    <constraint firstAttribute="bottom" secondItem="iry-Ko-4hK" secondAttribute="bottom" constant="5" id="fUn-lt-vvn"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xjR-2T-ViF">
@@ -412,7 +424,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="inputTextField" destination="mLm-L5-fvz" id="FTn-Ec-bpM"/>
+                        <outlet property="inputTextView" destination="iry-Ko-4hK" id="gv8-T7-7D2"/>
+                        <outlet property="inputTextViewHeight" destination="UrN-WA-lgs" id="etq-al-HYR"/>
                         <outlet property="sendButton" destination="CpV-vp-n75" id="V0o-Mg-ZeB"/>
                         <outlet property="tableView" destination="xjR-2T-ViF" id="qmG-PY-ycT"/>
                     </connections>

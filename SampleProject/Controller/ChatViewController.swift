@@ -13,8 +13,9 @@ import RxCocoa
 class ChatViewController: BaseTFViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var inputTextViewHeight: NSLayoutConstraint!
     
     fileprivate let vm = ChatViewModel()
     private let dataSource = ChatDataSource()
@@ -40,9 +41,18 @@ class ChatViewController: BaseTFViewController {
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        inputTextView.rx.text.orEmpty.subscribe(onNext: {[weak self](text) in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.adjustInputHeight()
+            weakSelf.vm.input.onNext(text)
+        }).disposed(by: disposeBag)
+
+        
         tableView.delegate = self
         
-        inputTextField.delegate = self
+        inputTextView.delegate = self
         
         webSocketLogic.delegate = self
         webSocketLogic.connect(roomId: "test")
@@ -61,11 +71,22 @@ class ChatViewController: BaseTFViewController {
     }
     
     private func tapSendButton() {
-        webSocketLogic.sendMessage(message: "test")
+        do {
+            let message = try vm.input.value()
+            if message.count > 0 {
+                webSocketLogic.sendMessage(message: message)
+                inputTextView.text = nil
+                view.endEditing(true)
+            }
+        } catch  {
+            
+        }
     }
-   
     
-
+    private func adjustInputHeight() {
+        let size:CGSize = inputTextView.sizeThatFits(inputTextView.frame.size)
+        inputTextViewHeight.constant = size.height
+    }
 }
 
 
@@ -90,6 +111,17 @@ class ChatDataSource: NSObject, UITableViewDataSource, RxTableViewDataSourceType
         if case .next(let items) = observedEvent {
             self.items = items
             tableView.reloadData()
+            
+            // 最新アイテムにスクロール
+            let last = items.count
+            if last > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {[weak self] in
+                    guard let weakSelf = self else {
+                        return
+                    }
+                    tableView.scrollToRow(at: IndexPath(row: items.count - 1, section: 0), at: .bottom, animated: true)
+                }
+            }
         }
     }
     
