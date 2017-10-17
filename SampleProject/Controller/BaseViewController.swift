@@ -80,4 +80,35 @@ class BaseTFViewController: BaseViewController, UITextFieldDelegate {
             .disposed(by: disposeBag)
         view.addGestureRecognizer(tapBackground)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let notification = NotificationCenter.default
+        notification.removeObserver(self)
+    }
+    
+    func keyboardWillShow(notification: Notification?) {
+        let rect = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        let duration: TimeInterval? = notification?.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            let transform = CGAffineTransform(translationX: 0, y: -(rect?.size.height)!)
+            self.view.transform = transform
+        })
+    }
+    
+    func keyboardWillHide(notification: Notification?) {
+        let duration: TimeInterval? = notification?.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            self.view.transform = CGAffineTransform.identity
+        })
+    }
 }

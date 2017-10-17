@@ -42,8 +42,9 @@ class ChatViewController: BaseTFViewController {
         
         tableView.delegate = self
         
-        webSocketLogic.delegate = self
+        inputTextField.delegate = self
         
+        webSocketLogic.delegate = self
         webSocketLogic.connect(roomId: "test")
     
     }

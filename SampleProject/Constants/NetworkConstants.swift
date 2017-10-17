@@ -11,10 +11,10 @@ import Foundation
 struct NetworkConstants {
     
     static let ApiSchema = "http://"
-    static let ApiHost = "localhost:8080"
+    static let ApiHost = "192.168.100.6:8080"
     
     static let WebSocketSchema = "ws://"
-    static let WebSocketHost = "localhost:1323"
+    static let WebSocketHost = "192.168.100.6:1323"
     
     static func getApiUrl() -> String {
         return ApiSchema + ApiHost
