@@ -18,6 +18,8 @@ class ChatViewController: BaseTFViewController {
     @IBOutlet weak var inputTextViewHeight: NSLayoutConstraint!
     var lastInputHeight: CGFloat?
     
+    var room: RoomDto?
+    
     fileprivate let vm = ChatViewModel()
     private let dataSource = ChatDataSource()
     
@@ -50,15 +52,17 @@ class ChatViewController: BaseTFViewController {
             weakSelf.vm.input.onNext(text)
         }).disposed(by: disposeBag)
 
-        
-        //tableView.delegate = self
         tableView.estimatedRowHeight = 30
         tableView.rowHeight = UITableViewAutomaticDimension
         
         inputTextView.delegate = self
         
         webSocketLogic.delegate = self
-        webSocketLogic.connect(roomId: "test")
+        if let room = room {
+            if let roomId = room.id {
+                webSocketLogic.connect(roomId: roomId)
+            }
+        }
         
         slideViewWithKeyboard = true
     }

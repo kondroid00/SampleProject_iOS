@@ -44,7 +44,13 @@ class HomeViewController: BaseViewController {
         if segue.identifier == "FromHomeToChat" {
             let vc = segue.destination as? ChatViewController
             if let indexPath = tableView.indexPathForSelectedRow {
-                
+                do {
+                    let rooms = try vm.rooms.value()
+                    let selectedRoom = rooms[indexPath.row]
+                    vc?.room = selectedRoom
+                } catch {
+                    
+                }
             }
         }
     }
