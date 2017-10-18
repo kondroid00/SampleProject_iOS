@@ -59,7 +59,8 @@ class ChatViewController: BaseTFViewController {
         
         webSocketLogic.delegate = self
         webSocketLogic.connect(roomId: "test")
-    
+        
+        slideViewWithKeyboard = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -168,11 +169,26 @@ extension ChatViewController: WebSocketLogicDelegate {
     }
     
     func websocketLogicDidDisconnect(error: Error?) {
-        
+        if let error = error {
+            switch error {
+            case WebSocketError.ConnectionFailed(let description):
+                showAlert(message: description)
+            default:
+                return
+            }
+        }
     }
     
-    func websocketLogicDidFailed() {
-        
+    func websocketLogicDidFailed(error: Error) {
+        switch error {
+        case WebSocketError.ConnectDidFailed(let description):
+            showAlert(message: description, handler1: {[weak self](action) in
+                self?.navigationController?.popViewController(animated: true)
+            })
+
+        default:
+            break
+        }
     }
     
     func websocketLogicDidReceiveJoined(data: WebSocketActionDto) {

@@ -11,3 +11,8 @@ import Foundation
 enum OptionalError: Error {
     case UnwrapFailed
 }
+
+enum WebSocketError: Error {
+    case ConnectDidFailed(description: String)
+    case ConnectionFailed(description: String)
+}

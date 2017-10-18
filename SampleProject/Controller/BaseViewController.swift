@@ -67,6 +67,8 @@ class BaseViewController: UIViewController {
 
 class BaseTFViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate {
     
+    var slideViewWithKeyboard = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,8 +85,10 @@ class BaseTFViewController: BaseViewController, UITextFieldDelegate, UITextViewD
         super.viewWillAppear(animated)
         
         let notification = NotificationCenter.default
-        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        if slideViewWithKeyboard {
+            notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+            notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

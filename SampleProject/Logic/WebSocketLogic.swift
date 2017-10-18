@@ -13,6 +13,15 @@ import RxSwift
 import Wrap
 
 class WebSocketLogic {
+    enum State {
+        case Opening
+        case Opened
+        case Closed
+    }
+    
+    // State
+    fileprivate(set) var state = State.Closed
+    
     // Starscream
     private var socket: WebSocket?
     weak var delegate: WebSocketLogicDelegate?
@@ -34,6 +43,7 @@ class WebSocketLogic {
             socket.delegate = self
             socket.pongDelegate = self
             socket.connect()
+            state = .Opening
         }
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
@@ -42,6 +52,7 @@ class WebSocketLogic {
     }
     
     func disconnect() {
+        state = .Closed
         socket?.disconnect()
         timer?.invalidate()
     }
@@ -127,7 +138,7 @@ class WebSocketLogic {
         if let pongReceiveTime = pongReceiveTime {
             let diff = Date().toSeconds() - pongReceiveTime
             if diff > WebSocketLogic.PingPongInterval {
-                delegate?.websocketLogicDidFailed()
+                delegate?.websocketLogicDidDisconnect(error: WebSocketError.ConnectionFailed(description: "接続が切れました"))
                 disconnect()
             }
         }
@@ -136,11 +147,21 @@ class WebSocketLogic {
 
 extension WebSocketLogic: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
+        state = .Opened
         delegate?.websocketLogicDidConnect()
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        delegate?.websocketLogicDidDisconnect(error: error)
+        switch state {
+        case .Opening:
+            delegate?.websocketLogicDidFailed(error: WebSocketError.ConnectDidFailed(description: "接続に失敗しました。"))
+        case .Opened:
+            delegate?.websocketLogicDidDisconnect(error: WebSocketError.ConnectionFailed(description: "接続が切れました"))
+        case .Closed:
+            return
+        }
+        
+        state = .Closed
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
@@ -198,7 +219,6 @@ extension WebSocketLogic: WebSocketDelegate {
                         self?.receiveError(data: data)
                     }
                 ).disposed(by: disposeBag)
-    
         }
     }
     
@@ -214,7 +234,7 @@ extension WebSocketLogic: WebSocketPongDelegate {
 protocol WebSocketLogicDelegate: class {
     func websocketLogicDidConnect() -> Void
     func websocketLogicDidDisconnect(error: Error?) -> Void
-    func websocketLogicDidFailed() -> Void
+    func websocketLogicDidFailed(error: Error) -> Void
     func websocketLogicDidReceiveJoined(data: WebSocketActionDto) -> Void
     func websocketLogicDidReceiveRemoved(data: WebSocketActionDto) -> Void
     func websocketLogicDidReceiveMessage(data: WebSocketMessageDto) -> Void
