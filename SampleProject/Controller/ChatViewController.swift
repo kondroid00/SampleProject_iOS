@@ -65,6 +65,8 @@ class ChatViewController: BaseTFViewController {
         }
         
         slideViewWithKeyboard = true
+        
+        self.title = room?.name
     }
     
     override func viewWillDisappear(_ animated: Bool) {
