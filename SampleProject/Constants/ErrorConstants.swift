@@ -14,5 +14,5 @@ enum OptionalError: Error {
 
 enum WebSocketError: Error {
     case ConnectDidFailed(description: String)
-    case ConnectionFailed(description: String)
+    case ConnectingFailed(description: String)
 }

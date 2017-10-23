@@ -175,7 +175,7 @@ extension ChatViewController: WebSocketLogicDelegate {
     func websocketLogicDidDisconnect(error: Error?) {
         if let error = error {
             switch error {
-            case WebSocketError.ConnectionFailed(let description):
+            case WebSocketError.ConnectingFailed(let description):
                 showAlert(message: description)
             default:
                 return

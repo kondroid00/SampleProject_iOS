@@ -106,7 +106,7 @@ class WebSocketLogic {
     fileprivate func receiveJoined(data: WebSocketActionDto) {
         if clientNo == nil || name == nil {
             for client in data.clients {
-                if(client.selfFlag) {
+                if client.selfFlag {
                     clientNo = client.clientNo
                     name = client.name
                 }
@@ -138,7 +138,7 @@ class WebSocketLogic {
         if let pongReceiveTime = pongReceiveTime {
             let diff = Date().toSeconds() - pongReceiveTime
             if diff > WebSocketLogic.PingPongInterval {
-                delegate?.websocketLogicDidDisconnect(error: WebSocketError.ConnectionFailed(description: "接続が切れました"))
+                delegate?.websocketLogicDidDisconnect(error: WebSocketError.ConnectingFailed(description: "接続が切れました"))
                 disconnect()
             }
         }
@@ -156,7 +156,7 @@ extension WebSocketLogic: WebSocketDelegate {
         case .Opening:
             delegate?.websocketLogicDidFailed(error: WebSocketError.ConnectDidFailed(description: "接続に失敗しました。"))
         case .Opened:
-            delegate?.websocketLogicDidDisconnect(error: WebSocketError.ConnectionFailed(description: "接続が切れました"))
+            delegate?.websocketLogicDidDisconnect(error: WebSocketError.ConnectingFailed(description: "接続が切れました"))
         case .Closed:
             return
         }
